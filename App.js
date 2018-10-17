@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 40,
-    paddingTop: 100,
+    paddingTop: 120,
     paddingBottom: 80,
     backgroundColor: `#${colors[Math.floor(Math.random() * colors.length)]}`
   }
