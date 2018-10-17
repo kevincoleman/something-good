@@ -8,7 +8,7 @@
 
 import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
-import Checklist from "./components/thing/Checklist";
+import Thing from "./components/thing/Thing";
 
 // const instructions = Platform.select({
 //   ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
@@ -18,11 +18,22 @@ import Checklist from "./components/thing/Checklist";
 // });
 
 // type Props = {};
+const colors = [
+  "442B48",
+  "6320EE",
+  "D81E5B",
+  "F15152",
+  "66635B",
+  "A4036F",
+  "16DB93",
+  "F29E4C"
+];
+
 export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Checklist />
+        <Thing />
       </View>
     );
   }
@@ -31,8 +42,9 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#ff3a20"
+    padding: 40,
+    paddingTop: 100,
+    paddingBottom: 80,
+    backgroundColor: `#${colors[Math.floor(Math.random() * colors.length)]}`
   }
 });
