@@ -1,20 +1,70 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  AsyncStorage
+} from "react-native";
 import encouragement from "./encouragement.js";
 
 class Thing extends Component {
   constructor() {
     super();
     this.state = {
-      things: [],
       todaysThing: {
         title: "",
-        completed: false
+        completed: false,
+        dateCompleted: ""
       }
     };
   }
 
+  today() {
+    const today = new Date();
+    return today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate();
+  }
+
   componentWillMount() {
+    let lastCompleted = {};
+    this.retrieveCompletedThing().then(thing => {
+      lastCompleted = JSON.parse(thing);
+
+      // check if the user already did today’s thing
+      if (
+        lastCompleted.dateCompleted !== "" &&
+        lastCompleted.dateCompleted == this.today()
+      ) {
+        // don’t get a new item, just use the completed one
+        this.setState({ todaysThing: lastCompleted });
+      } else {
+        // if they haven’t completed today’s thing yet, get a random thing
+        this.getNewThing();
+      }
+    });
+  }
+
+  storeCompletedThing = async function(thing) {
+    thing = JSON.stringify(thing);
+    try {
+      await AsyncStorage.setItem("@lastCompletedThing", thing);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  retrieveCompletedThing = async function() {
+    try {
+      const value = await AsyncStorage.getItem("@lastCompletedThing");
+      if (value !== null) {
+        return value;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  getNewThing() {
     let goodThings = [];
     fetch("https://things.somethinggood.app/goodThings.json", {
       Accept: "application/json"
@@ -24,16 +74,23 @@ class Thing extends Component {
         goodThings = data;
         const thing = goodThings[Math.floor(Math.random() * goodThings.length)];
         this.setState({
-          things: goodThings,
-          todaysThing: { title: thing.title, completed: false, id: thing.id }
+          todaysThing: {
+            title: thing.title,
+            completed: false,
+            id: thing.id
+          }
         });
       });
   }
 
   handleCompleteThing() {
-    this.setState({
-      todaysThing: { title: this.state.todaysThing.title, completed: true }
-    });
+    const completedThing = {
+      title: this.state.todaysThing.title,
+      completed: true,
+      dateCompleted: this.today()
+    };
+    this.storeCompletedThing(completedThing);
+    this.setState({ todaysThing: completedThing });
   }
 
   render() {
