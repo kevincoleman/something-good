@@ -10,7 +10,7 @@ let goodThings = [
   { title: "Throw away some trash you find.", id: 8 },
   { title: "Forgive someone.", id: 9 },
   { title: "Thank someone.", id: 10 },
-  { title: "Spend time with someone who’ll enjoy it.", id: 11 },
+  { title: "Spend time with someone who will enjoy it.", id: 11 },
   { title: "Exercise.", id: 12 },
   { title: "Clean up a mess.", id: 13 },
   { title: "Travel using green transportation.", id: 14 },

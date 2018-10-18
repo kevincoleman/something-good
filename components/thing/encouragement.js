@@ -5,7 +5,8 @@ let encouragement = [
   "The hardest step is often the first one.",
   "Way to make a difference!",
   "Doing something good makes you feel good, too.",
-  "One more good deed done. Grats!"
+  "One more good deed done!",
+  "Lots of small things make one big thing."
 ];
 
 export default encouragement;
