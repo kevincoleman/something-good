@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import goodThings from "./goodThings.js";
 import encouragement from "./encouragement.js";
 
 class Thing extends Component {
   constructor() {
     super();
     this.state = {
+      things: [],
       todaysThing: {
         title: "",
         completed: false
@@ -15,10 +15,19 @@ class Thing extends Component {
   }
 
   componentWillMount() {
-    const thing = goodThings[Math.floor(Math.random() * goodThings.length)];
-    this.setState({
-      todaysThing: { title: thing.title, completed: false, id: thing.id }
-    });
+    let goodThings = [];
+    fetch("https://things.somethinggood.app/goodThings.json", {
+      Accept: "application/json"
+    })
+      .then(res => res.json())
+      .then(data => {
+        goodThings = data;
+        const thing = goodThings[Math.floor(Math.random() * goodThings.length)];
+        this.setState({
+          things: goodThings,
+          todaysThing: { title: thing.title, completed: false, id: thing.id }
+        });
+      });
   }
 
   handleCompleteThing() {
