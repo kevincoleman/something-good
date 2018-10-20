@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  AsyncStorage
-} from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { Storage } from "../../services/storage";
 import encouragement from "./encouragement.js";
+
+const storage = new Storage();
 
 class Thing extends Component {
   constructor() {
@@ -15,6 +12,7 @@ class Thing extends Component {
       todaysThing: {
         title: "",
         completed: false,
+        dateRetrieved: "",
         dateCompleted: ""
       }
     };
@@ -27,7 +25,7 @@ class Thing extends Component {
 
   componentWillMount() {
     let lastCompleted = {};
-    this.retrieveCompletedThing().then(thing => {
+    storage.retrieve("lastCompletedThing").then(thing => {
       lastCompleted = JSON.parse(thing);
 
       // check if the user already did today’s thing
@@ -38,47 +36,37 @@ class Thing extends Component {
         // don’t get a new item, just use the completed one
         this.setState({ todaysThing: lastCompleted });
       } else {
-        // if they haven’t completed today’s thing yet, get a random thing
-        this.getNewThing();
+        // if they haven’t completed today’s thing yet, check if today’s thing has already been set
+        storage.retrieve("todaysThing").then(todaysThing => {
+          if (
+            todaysThing !== undefined &&
+            JSON.parse(todaysThing).dateRetrieved == this.today()
+          ) {
+            this.setState({ todaysThing: JSON.parse(todaysThing) });
+          } else {
+            this.getNewThing();
+          }
+        });
       }
     });
   }
 
-  storeCompletedThing = async function(thing) {
-    thing = JSON.stringify(thing);
-    try {
-      await AsyncStorage.setItem("@lastCompletedThing", thing);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  retrieveCompletedThing = async function() {
-    try {
-      const value = await AsyncStorage.getItem("@lastCompletedThing");
-      if (value !== null) {
-        return value;
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   getNewThing() {
-    let goodThings = [];
     fetch("https://things.somethinggood.app/goodThings.json", {
       Accept: "application/json"
     })
       .then(res => res.json())
-      .then(data => {
-        goodThings = data;
-        const thing = goodThings[Math.floor(Math.random() * goodThings.length)];
+      .then(things => {
+        const thing = things[Math.floor(Math.random() * things.length)];
+        const todaysThing = {
+          title: thing.title,
+          completed: false,
+          dateRetrieved: this.today(),
+          id: thing.id
+        };
+        storage.store("todaysThing", JSON.stringify(todaysThing));
         this.setState({
-          todaysThing: {
-            title: thing.title,
-            completed: false,
-            id: thing.id
-          }
+          todaysThing: todaysThing
         });
       });
   }
@@ -89,7 +77,7 @@ class Thing extends Component {
       completed: true,
       dateCompleted: this.today()
     };
-    this.storeCompletedThing(completedThing);
+    storage.store("lastCompletedThing", JSON.stringify(completedThing));
     this.setState({ todaysThing: completedThing });
   }
 
