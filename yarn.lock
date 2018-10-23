@@ -4310,6 +4310,10 @@ react-is@^16.5.0:
   version "16.5.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.5.2.tgz#e2a7b7c3f5d48062eb769fcb123505eb928722e3"
 
+react-native-google-analytics-bridge@^6.1.2:
+  version "6.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-google-analytics-bridge/-/react-native-google-analytics-bridge-6.1.2.tgz#1b901d7c06209f88baf4980d5be2ca8150c8df66"
+
 react-native@0.57.2:
   version "0.57.2"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.57.2.tgz#6beb2985bd94686087613af8d2af653f5fb61ffa"

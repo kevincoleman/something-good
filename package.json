@@ -10,7 +10,8 @@
   "dependencies": {
     "gh-pages": "^2.0.1",
     "react": "16.5.0",
-    "react-native": "0.57.2"
+    "react-native": "0.57.2",
+    "react-native-google-analytics-bridge": "^6.1.2"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",

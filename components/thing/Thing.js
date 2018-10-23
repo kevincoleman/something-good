@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Storage } from "../../services/storage";
 import encouragement from "./encouragement.js";
+import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 
+const tracker = new GoogleAnalyticsTracker("UA-127958837-1");
 const storage = new Storage();
 
 class Thing extends Component {
@@ -24,6 +26,7 @@ class Thing extends Component {
   }
 
   componentWillMount() {
+    tracker.trackEvent("activity", "load new thing");
     let lastCompleted = {};
     storage.retrieve("lastCompletedThing").then(thing => {
       lastCompleted = JSON.parse(thing);
@@ -52,6 +55,7 @@ class Thing extends Component {
   }
 
   getNewThing() {
+    tracker.trackEvent("activity", "load new thing");
     fetch("https://things.somethinggood.app/goodThings.json", {
       Accept: "application/json"
     })
@@ -77,6 +81,7 @@ class Thing extends Component {
       completed: true,
       dateCompleted: this.today()
     };
+    tracker.trackEvent("completed", JSON.stringify(completedThing));
     storage.store("lastCompletedThing", JSON.stringify(completedThing));
     this.setState({ todaysThing: completedThing });
   }
