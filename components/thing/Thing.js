@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Storage } from "../../services/storage";
 import encouragement from "./encouragement.js";
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
+import DeviceInfo from "react-native-device-info";
 
 const tracker = new GoogleAnalyticsTracker("UA-127958837-1");
 const storage = new Storage();
@@ -57,7 +58,6 @@ class Thing extends Component {
   }
 
   getNewThing() {
-    tracker.trackEvent("activity", "load new thing");
     fetch("https://things.somethinggood.app/goodThings.json", {
       Accept: "application/json"
     })
@@ -70,6 +70,13 @@ class Thing extends Component {
           dateRetrieved: this.today(),
           id: thing.id
         };
+        tracker.trackEvent(
+          "loadNewThing",
+          JSON.stringify({
+            uid: DeviceInfo.getUniqueID(),
+            todaysThing
+          })
+        );
         storage.store("todaysThing", JSON.stringify(todaysThing));
         this.setState({
           todaysThing: todaysThing
@@ -83,7 +90,13 @@ class Thing extends Component {
       completed: true,
       dateCompleted: this.today()
     };
-    tracker.trackEvent("completed", JSON.stringify(completedThing));
+    tracker.trackEvent(
+      "completeThing",
+      JSON.stringify({
+        uid: DeviceInfo.getUniqueID(),
+        completedThing
+      })
+    );
     storage.store("lastCompletedThing", JSON.stringify(completedThing));
     this.setState({ todaysThing: completedThing });
   }
