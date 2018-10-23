@@ -26,7 +26,9 @@ class Thing extends Component {
   }
 
   componentWillMount() {
-    tracker.trackEvent("activity", "load new thing");
+    // TEMPORARY: reset item status for testing
+    // storage.store("lastCompletedThing", JSON.stringify(this.state.todaysThing));
+
     let lastCompleted = {};
     storage.retrieve("lastCompletedThing").then(thing => {
       lastCompleted = JSON.parse(thing);
