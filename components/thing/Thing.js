@@ -13,7 +13,7 @@ class Thing extends Component {
     super();
     this.state = {
       todaysThing: {
-        title: "",
+        title: "good things come to those who wait...",
         completed: false,
         dateRetrieved: "",
         dateCompleted: ""
@@ -27,41 +27,55 @@ class Thing extends Component {
   }
 
   componentWillMount() {
-    // TEMPORARY: reset item status for testing
+    // DEV USE ONLY: reset item status for testing
     // storage.store("lastCompletedThing", JSON.stringify(this.state.todaysThing));
 
     let lastCompleted = {};
-    storage.retrieve("lastCompletedThing").then(thing => {
-      lastCompleted = JSON.parse(thing);
-
-      // check if the user already did today’s thing
-      if (
-        lastCompleted.dateCompleted !== "" &&
-        lastCompleted.dateCompleted == this.today()
-      ) {
-        // don’t get a new item, just use the completed one
-        this.setState({ todaysThing: lastCompleted });
-      } else {
-        // if they haven’t completed today’s thing yet, check if today’s thing has already been set
-        storage.retrieve("todaysThing").then(todaysThing => {
-          if (
-            todaysThing !== undefined &&
-            JSON.parse(todaysThing).dateRetrieved == this.today()
-          ) {
-            this.setState({ todaysThing: JSON.parse(todaysThing) });
-          } else {
-            this.getNewThing();
-          }
-        });
-      }
-    });
+    storage
+      .retrieve("lastCompletedThing")
+      .then(thing => {
+        lastCompleted = JSON.parse(thing);
+        // check if the user already did today’s thing...
+        if (
+          lastCompleted &&
+          lastCompleted.dateCompleted !== "" &&
+          lastCompleted.dateCompleted == this.today()
+        ) {
+          // don’t get a new item, just use the completed one.
+          this.setState({ todaysThing: lastCompleted });
+        } else {
+          // if the user hasn’t completed today’s thing, check if it’s already been set.
+          storage
+            .retrieve("todaysThing")
+            .then(todaysThing => {
+              if (
+                todaysThing == undefined ||
+                JSON.parse(todaysThing).dateRetrieved !== this.today()
+              ) {
+                // if today’s thing hasn’t been set, set it.
+                this.getNewThing();
+              } else {
+                // if today’s thing has been set, use it.
+                this.setState({ todaysThing: JSON.parse(todaysThing) });
+              }
+            })
+            .catch(error => {
+              console.error(error);
+            });
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 
   getNewThing() {
     fetch("https://things.somethinggood.app/goodThings.json", {
       Accept: "application/json"
     })
-      .then(res => res.json())
+      .then(res => {
+        return res.json();
+      })
       .then(things => {
         const thing = things[Math.floor(Math.random() * things.length)];
         const todaysThing = {
@@ -81,6 +95,9 @@ class Thing extends Component {
         this.setState({
           todaysThing: todaysThing
         });
+      })
+      .catch(error => {
+        console.error(error);
       });
   }
 
