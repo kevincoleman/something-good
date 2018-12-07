@@ -12,9 +12,7 @@ export class Storage {
   async retrieve(name) {
     try {
       const value = await AsyncStorage.getItem(`@${name}`);
-      if (value !== null) {
-        return value;
-      }
+      return value;
     } catch (error) {
       console.error(error);
     }
