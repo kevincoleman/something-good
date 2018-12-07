@@ -49,7 +49,7 @@ class Thing extends Component {
             .retrieve("todaysThing")
             .then(todaysThing => {
               if (
-                todaysThing == undefined ||
+                todaysThing === undefined ||
                 JSON.parse(todaysThing).dateRetrieved !== this.today()
               ) {
                 // if today’s thing hasn’t been set, set it.
@@ -60,6 +60,7 @@ class Thing extends Component {
               }
             })
             .catch(error => {
+              this.getNewThing();
               console.error(error);
             });
         }
@@ -97,7 +98,18 @@ class Thing extends Component {
         });
       })
       .catch(error => {
-        console.error(error);
+        // default in case there’s no connection
+        const todaysThing = {
+          title: "Smile at someone.",
+          completed: false,
+          dateRetrieved: this.today(),
+          id: 0
+        };
+        storage.store("todaysThing", JSON.stringify(todaysThing));
+        this.setState({
+          todaysThing: todaysThing
+        });
+        console.log(error);
       });
   }
 
@@ -120,7 +132,10 @@ class Thing extends Component {
 
   render() {
     let actionArea;
-    if (!this.state.todaysThing.completed) {
+    if (
+      !this.state.todaysThing.completed &&
+      this.state.todaysThing.title !== "good things come to those who wait..."
+    ) {
       actionArea = (
         <TouchableOpacity
           style={styles.button}
@@ -129,7 +144,9 @@ class Thing extends Component {
           <Text style={styles.buttonText}>I did it!</Text>
         </TouchableOpacity>
       );
-    } else {
+    } else if (
+      this.state.todaysThing.title !== "good things come to those who wait..."
+    ) {
       actionArea = (
         <Text style={styles.basicText}>
           {encouragement[Math.floor(Math.random() * encouragement.length)] +
