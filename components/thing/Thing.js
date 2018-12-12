@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
 import { Storage } from "../../services/storage";
 import encouragement from "./encouragement.js";
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 import DeviceInfo from "react-native-device-info";
+import RNShake from "react-native-shake";
 
 const tracker = new GoogleAnalyticsTracker("UA-127958837-1");
 const storage = new Storage();
@@ -29,6 +30,29 @@ class Thing extends Component {
   componentWillMount() {
     // DEV USE ONLY: reset item status for testing
     // storage.store("lastCompletedThing", JSON.stringify(this.state.todaysThing));
+
+    RNShake.addEventListener("ShakeEvent", () => {
+      if (
+        lastCompleted &&
+        lastCompleted.dateCompleted !== "" &&
+        lastCompleted.dateCompleted == this.today()
+      ) {
+        Alert.alert(
+          "Only one thing per day!",
+          "It’s totally tubular that you want to do more good things. This app is just designed to help you do one good thing each day. Come back tomorrow for more!",
+          [
+            {
+              text: "Ok",
+              onPress: () =>
+                console.log("Tried to get a second thing after completing one"),
+              style: "cancel"
+            }
+          ]
+        );
+      } else {
+        this.getNewThing();
+      }
+    });
 
     let lastCompleted = {};
     storage
@@ -130,6 +154,20 @@ class Thing extends Component {
     this.setState({ todaysThing: completedThing });
   }
 
+  cantDo() {
+    Alert.alert(
+      "Can’t do today’s thing?",
+      "Never fear. You can get a new thing by shaking your device.",
+      [
+        {
+          text: "Thanks!",
+          onPress: () => console.log("thanks pressed"),
+          style: "cancel"
+        }
+      ]
+    );
+  }
+
   render() {
     let actionArea;
     if (
@@ -137,12 +175,17 @@ class Thing extends Component {
       this.state.todaysThing.title !== "good things come to those who wait..."
     ) {
       actionArea = (
-        <TouchableOpacity
-          style={styles.button}
-          onPress={this.handleCompleteThing.bind(this)}
-        >
-          <Text style={styles.buttonText}>I did it!</Text>
-        </TouchableOpacity>
+        <View>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={this.handleCompleteThing.bind(this)}
+          >
+            <Text style={styles.buttonText}>I did it!</Text>
+          </TouchableOpacity>
+          <Text style={styles.cantDo} onPress={this.cantDo}>
+            I can’t do that thing today.
+          </Text>
+        </View>
       );
     } else if (
       this.state.todaysThing.title !== "good things come to those who wait..."
@@ -197,6 +240,11 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 24,
     color: "#333333"
+  },
+  cantDo: {
+    color: "#ffffff",
+    textAlign: "center",
+    marginTop: 15
   },
   basicText: {
     color: "#ffffff",

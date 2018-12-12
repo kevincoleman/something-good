@@ -12,7 +12,8 @@
     "react": "16.5.0",
     "react-native": "0.57.2",
     "react-native-device-info": "^0.24.3",
-    "react-native-google-analytics-bridge": "^6.1.2"
+    "react-native-google-analytics-bridge": "^6.1.2",
+    "react-native-shake": "^3.2.4"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",

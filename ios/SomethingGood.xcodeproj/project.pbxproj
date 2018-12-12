@@ -44,6 +44,7 @@
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		AFFE7B7914BF42DC827D3469 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 06FFC78707F54EEB96C240DA /* libsqlite3.0.tbd */; };
 		E2EEE1619D6443F3B7AAB079 /* libRNDeviceInfo-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C6BDBC8537476FB85E369B /* libRNDeviceInfo-tvOS.a */; };
+		F25A84FEB06D4247BB5402F1 /* libRNShakeEvent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB122E1277EC4A77B66DBBF5 /* libRNShakeEvent.a */; };
 		F3E26BE024BA4ED5AC45075D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E577A3C78E42999F49061C /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +111,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = E72EC1401F7ABB5A0001BC90;
 			remoteInfo = "RNDeviceInfo-tvOS";
+		};
+		0A1053DF21C0CF870066F240 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F28CA667FA5446FFAFA379FF /* RNShakeEvent.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNShakeEvent;
 		};
 		139105C01AF99BAD00B5F7CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -377,8 +385,10 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		9ACFB4A9924B4537BCDDAA88 /* libRCTGoogleAnalyticsBridge.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTGoogleAnalyticsBridge.a; sourceTree = "<group>"; };
 		A31BB58C52544EA6B569C3CC /* RCTGoogleAnalyticsBridge.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTGoogleAnalyticsBridge.xcodeproj; path = "../node_modules/react-native-google-analytics-bridge/ios/RCTGoogleAnalyticsBridge/RCTGoogleAnalyticsBridge.xcodeproj"; sourceTree = "<group>"; };
+		AB122E1277EC4A77B66DBBF5 /* libRNShakeEvent.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNShakeEvent.a; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		E1C6BDBC8537476FB85E369B /* libRNDeviceInfo-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNDeviceInfo-tvOS.a"; sourceTree = "<group>"; };
+		F28CA667FA5446FFAFA379FF /* RNShakeEvent.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNShakeEvent.xcodeproj; path = "../node_modules/react-native-shake/ios/RNShakeEvent.xcodeproj"; sourceTree = "<group>"; };
 		FB95174D8959412CBC30EAA8 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/ios/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -413,6 +423,7 @@
 				0A8D7078B7C0449387415F96 /* libz.tbd in Frameworks */,
 				AFFE7B7914BF42DC827D3469 /* libsqlite3.0.tbd in Frameworks */,
 				704C2700EB0F456291FCBE2C /* libRNDeviceInfo.a in Frameworks */,
+				F25A84FEB06D4247BB5402F1 /* libRNShakeEvent.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,6 +519,7 @@
 				9ACFB4A9924B4537BCDDAA88 /* libRCTGoogleAnalyticsBridge.a */,
 				004DDBCC072740339FA5A031 /* libRNDeviceInfo.a */,
 				E1C6BDBC8537476FB85E369B /* libRNDeviceInfo-tvOS.a */,
+				AB122E1277EC4A77B66DBBF5 /* libRNShakeEvent.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -525,6 +537,14 @@
 			children = (
 				0A01F1D7217FC62B00C7C40D /* libRNDeviceInfo.a */,
 				0A01F1D9217FC62B00C7C40D /* libRNDeviceInfo-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0A1053DC21C0CF870066F240 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0A1053E021C0CF870066F240 /* libRNShakeEvent.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -633,6 +653,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				A31BB58C52544EA6B569C3CC /* RCTGoogleAnalyticsBridge.xcodeproj */,
 				FB95174D8959412CBC30EAA8 /* RNDeviceInfo.xcodeproj */,
+				F28CA667FA5446FFAFA379FF /* RNShakeEvent.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -852,6 +873,10 @@
 					ProductGroup = 0A01F1D2217FC62B00C7C40D /* Products */;
 					ProjectRef = FB95174D8959412CBC30EAA8 /* RNDeviceInfo.xcodeproj */;
 				},
+				{
+					ProductGroup = 0A1053DC21C0CF870066F240 /* Products */;
+					ProjectRef = F28CA667FA5446FFAFA379FF /* RNShakeEvent.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -918,6 +943,13 @@
 			fileType = archive.ar;
 			path = "libRNDeviceInfo-tvOS.a";
 			remoteRef = 0A01F1D8217FC62B00C7C40D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0A1053E021C0CF870066F240 /* libRNShakeEvent.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNShakeEvent.a;
+			remoteRef = 0A1053DF21C0CF870066F240 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		139105C11AF99BAD00B5F7CC /* libRCTSettings.a */ = {
@@ -1287,12 +1319,14 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-google-analytics-bridge/ios/RCTGoogleAnalyticsBridge/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
+					"$(SRCROOT)/../node_modules/react-native-shake/ios",
 				);
 				INFOPLIST_FILE = SomethingGoodTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1317,12 +1351,14 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-google-analytics-bridge/ios/RCTGoogleAnalyticsBridge/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
+					"$(SRCROOT)/../node_modules/react-native-shake/ios",
 				);
 				INFOPLIST_FILE = SomethingGoodTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1345,7 +1381,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = A33V646YC5;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../ios";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../ios",
+					"$(SRCROOT)/../node_modules/react-native-shake/ios",
+				);
 				INFOPLIST_FILE = SomethingGood/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -1367,7 +1406,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Kevin Coleman (A33V646YC5)";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A33V646YC5;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../ios";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../ios",
+					"$(SRCROOT)/../node_modules/react-native-shake/ios",
+				);
 				INFOPLIST_FILE = SomethingGood/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -1398,11 +1440,13 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-google-analytics-bridge/ios/RCTGoogleAnalyticsBridge/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
+					"$(SRCROOT)/../node_modules/react-native-shake/ios",
 				);
 				INFOPLIST_FILE = "SomethingGood-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1435,11 +1479,13 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-google-analytics-bridge/ios/RCTGoogleAnalyticsBridge/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
+					"$(SRCROOT)/../node_modules/react-native-shake/ios",
 				);
 				INFOPLIST_FILE = "SomethingGood-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1471,11 +1517,13 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-google-analytics-bridge/ios/RCTGoogleAnalyticsBridge/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
+					"$(SRCROOT)/../node_modules/react-native-shake/ios",
 				);
 				INFOPLIST_FILE = "SomethingGood-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1507,11 +1555,13 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-google-analytics-bridge/ios/RCTGoogleAnalyticsBridge/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
+					"$(SRCROOT)/../node_modules/react-native-shake/ios",
 				);
 				INFOPLIST_FILE = "SomethingGood-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
