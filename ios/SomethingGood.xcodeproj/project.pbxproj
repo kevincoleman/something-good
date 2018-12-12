@@ -1341,14 +1341,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kevin Coleman (A33V646YC5)";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = A33V646YC5;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-google-analytics-bridge/ios/RCTGoogleAnalyticsBridge/**",
-					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
-				);
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../ios";
 				INFOPLIST_FILE = SomethingGood/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -1356,8 +1353,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kevincolemandesign.somethinggood;
 				PRODUCT_NAME = SomethingGood;
+				PROVISIONING_PROFILE_SPECIFIER = "Something Good";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1366,13 +1364,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kevin Coleman (A33V646YC5)";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A33V646YC5;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-google-analytics-bridge/ios/RCTGoogleAnalyticsBridge/**",
-					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
-				);
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../ios";
 				INFOPLIST_FILE = SomethingGood/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -1380,8 +1375,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kevincolemandesign.somethinggood;
 				PRODUCT_NAME = SomethingGood;
+				PROVISIONING_PROFILE_SPECIFIER = "Something Good";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
