@@ -18,10 +18,12 @@ class Thing extends Component {
         completed: false,
         dateRetrieved: "",
         dateCompleted: ""
-      }
+      },
+      completedThingToday: false
     };
   }
 
+  // MOVE to utility class
   today() {
     const today = new Date();
     return today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate();
@@ -31,12 +33,11 @@ class Thing extends Component {
     // DEV USE ONLY: reset item status for testing
     // storage.store("lastCompletedThing", JSON.stringify(this.state.todaysThing));
 
+    // Handle shake events
     RNShake.addEventListener("ShakeEvent", () => {
-      if (
-        lastCompleted &&
-        lastCompleted.dateCompleted !== "" &&
-        lastCompleted.dateCompleted == this.today()
-      ) {
+      if (!this.state.completedThingToday) {
+        this.getNewThing();
+      } else {
         Alert.alert(
           "Only one thing per day!",
           "It’s totally tubular that you want to do more good things. This app is just designed to help you do one good thing each day. Come back tomorrow for more!",
@@ -49,11 +50,10 @@ class Thing extends Component {
             }
           ]
         );
-      } else {
-        this.getNewThing();
       }
     });
 
+    // prep app state for the day
     let lastCompleted = {};
     storage
       .retrieve("lastCompletedThing")
@@ -66,7 +66,10 @@ class Thing extends Component {
           lastCompleted.dateCompleted == this.today()
         ) {
           // don’t get a new item, just use the completed one.
-          this.setState({ todaysThing: lastCompleted });
+          this.setState({
+            todaysThing: lastCompleted,
+            completedThingToday: true
+          });
         } else {
           // if the user hasn’t completed today’s thing, check if it’s already been set.
           storage
@@ -151,10 +154,10 @@ class Thing extends Component {
       })
     );
     storage.store("lastCompletedThing", JSON.stringify(completedThing));
-    this.setState({ todaysThing: completedThing });
+    this.setState({ todaysThing: completedThing, completedThingToday: true });
   }
 
-  cantDo() {
+  cantDoThing() {
     Alert.alert(
       "Can’t do today’s thing?",
       "Never fear. You can get a new thing by shaking your device.",
@@ -182,7 +185,7 @@ class Thing extends Component {
           >
             <Text style={styles.buttonText}>I did it!</Text>
           </TouchableOpacity>
-          <Text style={styles.cantDo} onPress={this.cantDo}>
+          <Text style={styles.cantDo} onPress={this.cantDoThing}>
             I can’t do that thing today.
           </Text>
         </View>
