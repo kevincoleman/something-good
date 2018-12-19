@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+  Vibration
+} from "react-native";
 import { Storage } from "../../services/storage";
 import encouragement from "./encouragement.js";
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
@@ -51,6 +58,7 @@ class Thing extends Component {
           ]
         );
       }
+      Vibration.vibrate(100);
     });
 
     // prep app state for the day
