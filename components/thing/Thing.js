@@ -28,6 +28,7 @@ class Thing extends Component {
       },
       completedThingToday: false
     };
+    this.cantDoThing = this.cantDoThing.bind(this);
   }
 
   // MOVE to utility class
@@ -171,9 +172,16 @@ class Thing extends Component {
       "Never fear. You can get a new thing by shaking your device.",
       [
         {
-          text: "Thanks!",
-          onPress: () => console.log("thanks pressed"),
+          text: "Cancel",
+          onPress: () => {
+            console.log("Cancelled out of alert");
+          },
           style: "cancel"
+        },
+        {
+          text: "Get one now",
+          onPress: () => this.getNewThing(),
+          style: "default"
         }
       ]
     );
