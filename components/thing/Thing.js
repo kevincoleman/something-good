@@ -12,8 +12,10 @@ import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 import DeviceInfo from "react-native-device-info";
 import RNShake from "react-native-shake";
 import Alerts from "../../core/Alerts";
+import Utility from "../../core/Utility";
 
 const alerts = new Alerts();
+const utility = new Utility();
 const tracker = new GoogleAnalyticsTracker("UA-127958837-1");
 const storage = new Storage();
 
@@ -30,12 +32,6 @@ class Thing extends Component {
       completedThingToday: false
     };
     alerts.cantDoThing = alerts.cantDoThing.bind(this);
-  }
-
-  // MOVE to utility class
-  today() {
-    const today = new Date();
-    return today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate();
   }
 
   componentWillMount() {
@@ -62,7 +58,7 @@ class Thing extends Component {
         if (
           lastCompleted &&
           lastCompleted.dateCompleted !== "" &&
-          lastCompleted.dateCompleted == this.today()
+          lastCompleted.dateCompleted == utility.getToday()
         ) {
           // don’t get a new item, just use the completed one.
           this.setState({
@@ -76,7 +72,7 @@ class Thing extends Component {
             .then(todaysThing => {
               if (
                 todaysThing === undefined ||
-                JSON.parse(todaysThing).dateRetrieved !== this.today()
+                JSON.parse(todaysThing).dateRetrieved !== utility.getToday()
               ) {
                 // if today’s thing hasn’t been set, set it.
                 this.getNewThing();
@@ -108,7 +104,7 @@ class Thing extends Component {
         const todaysThing = {
           title: thing.title,
           completed: false,
-          dateRetrieved: this.today(),
+          dateRetrieved: utility.getToday(),
           id: thing.id
         };
         tracker.trackEvent(
@@ -128,7 +124,7 @@ class Thing extends Component {
         const todaysThing = {
           title: "Smile at someone.",
           completed: false,
-          dateRetrieved: this.today(),
+          dateRetrieved: utility.getToday(),
           id: 0
         };
         storage.store("todaysThing", JSON.stringify(todaysThing));
@@ -143,7 +139,7 @@ class Thing extends Component {
     const completedThing = {
       title: this.state.todaysThing.title,
       completed: true,
-      dateCompleted: this.today()
+      dateCompleted: utility.getToday()
     };
     tracker.trackEvent(
       "completeThing",
