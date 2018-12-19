@@ -4,7 +4,6 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  Alert,
   Vibration
 } from "react-native";
 import { Storage } from "../../services/storage";
@@ -12,7 +11,9 @@ import encouragement from "./encouragement.js";
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 import DeviceInfo from "react-native-device-info";
 import RNShake from "react-native-shake";
+import Alerts from "../../core/Alerts";
 
+const alerts = new Alerts();
 const tracker = new GoogleAnalyticsTracker("UA-127958837-1");
 const storage = new Storage();
 
@@ -28,7 +29,7 @@ class Thing extends Component {
       },
       completedThingToday: false
     };
-    this.cantDoThing = this.cantDoThing.bind(this);
+    alerts.cantDoThing = alerts.cantDoThing.bind(this);
   }
 
   // MOVE to utility class
@@ -46,18 +47,7 @@ class Thing extends Component {
       if (!this.state.completedThingToday) {
         this.getNewThing();
       } else {
-        Alert.alert(
-          "Only one thing per day!",
-          "It’s totally tubular that you want to do more good things. This app is just designed to help you do one good thing each day. Come back tomorrow for more!",
-          [
-            {
-              text: "Ok",
-              onPress: () =>
-                console.log("Tried to get a second thing after completing one"),
-              style: "cancel"
-            }
-          ]
-        );
+        alerts.oneThingPerDay();
       }
       Vibration.vibrate(100);
     });
@@ -166,27 +156,6 @@ class Thing extends Component {
     this.setState({ todaysThing: completedThing, completedThingToday: true });
   }
 
-  cantDoThing() {
-    Alert.alert(
-      "Can’t do today’s thing?",
-      "Never fear. You can get a new thing by shaking your device.",
-      [
-        {
-          text: "Cancel",
-          onPress: () => {
-            console.log("Cancelled out of alert");
-          },
-          style: "cancel"
-        },
-        {
-          text: "Get one now",
-          onPress: () => this.getNewThing(),
-          style: "default"
-        }
-      ]
-    );
-  }
-
   render() {
     let actionArea;
     if (
@@ -201,7 +170,7 @@ class Thing extends Component {
           >
             <Text style={styles.buttonText}>I did it!</Text>
           </TouchableOpacity>
-          <Text style={styles.cantDo} onPress={this.cantDoThing}>
+          <Text style={styles.cantDo} onPress={alerts.cantDoThing}>
             I can’t do that thing today.
           </Text>
         </View>
