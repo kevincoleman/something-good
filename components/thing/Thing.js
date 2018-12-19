@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+  Vibration
+} from "react-native";
 import { Storage } from "../../services/storage";
 import encouragement from "./encouragement.js";
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
@@ -31,7 +38,7 @@ class Thing extends Component {
 
   componentWillMount() {
     // DEV USE ONLY: reset item status for testing
-    // storage.store("lastCompletedThing", JSON.stringify(this.state.todaysThing));
+    storage.store("lastCompletedThing", JSON.stringify(this.state.todaysThing));
 
     // Handle shake events
     RNShake.addEventListener("ShakeEvent", () => {
@@ -51,6 +58,7 @@ class Thing extends Component {
           ]
         );
       }
+      Vibration.vibrate(100);
     });
 
     // prep app state for the day
