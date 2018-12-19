@@ -7,7 +7,7 @@ import {
   Vibration
 } from "react-native";
 import { Storage } from "../../services/storage";
-import encouragement from "./encouragement.js";
+import encouragement from "../../core/encouragement.js";
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 import DeviceInfo from "react-native-device-info";
 import RNShake from "react-native-shake";
