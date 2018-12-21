@@ -36,7 +36,7 @@ class Thing extends Component {
 
   componentWillMount() {
     // DEV USE ONLY: reset item status for testing
-    storage.store("lastCompletedThing", JSON.stringify(this.state.todaysThing));
+    // storage.store("lastCompletedThing", JSON.stringify(this.state.todaysThing));
 
     // Handle shake events
     RNShake.addEventListener("ShakeEvent", () => {
