@@ -1,16 +1,11 @@
 import React, { Component } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Vibration
-} from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Storage } from "../../services/storage";
 import encouragement from "../../core/encouragement.js";
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 import DeviceInfo from "react-native-device-info";
 import RNShake from "react-native-shake";
+import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import Alerts from "../../core/Alerts";
 import Utility from "../../core/Utility";
 
@@ -45,7 +40,7 @@ class Thing extends Component {
       } else {
         alerts.oneThingPerDay();
       }
-      Vibration.vibrate(100);
+      ReactNativeHapticFeedback.trigger("impactLight", true);
     });
 
     // prep app state for the day

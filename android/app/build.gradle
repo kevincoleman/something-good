@@ -137,6 +137,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-haptic-feedback')
     compile project(':react-native-shake')
     compile project(':react-native-device-info')
     compile project(':react-native-google-analytics-bridge')
