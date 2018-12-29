@@ -7,20 +7,11 @@
  */
 
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Thing from "./components/thing/Thing";
+import Utility from "./core/Utility";
 
-// type Props = {};
-const colors = [
-  "442B48",
-  "6320EE",
-  "D81E5B",
-  "F15152",
-  "66635B",
-  "A4036F",
-  "16DB93",
-  "F29E4C"
-];
+const utility = new Utility();
 
 export default class App extends Component {
   render() {
@@ -38,6 +29,8 @@ const styles = StyleSheet.create({
     padding: 40,
     paddingTop: 120,
     paddingBottom: 80,
-    backgroundColor: `#${colors[Math.floor(Math.random() * colors.length)]}`
+    backgroundColor: `#${
+      utility.colors[Math.floor(Math.random() * utility.colors.length)]
+    }`
   }
 });
