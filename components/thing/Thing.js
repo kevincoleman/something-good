@@ -19,7 +19,7 @@ class Thing extends Component {
     super();
     this.state = {
       todaysThing: {
-        title: "good things come to those who wait...",
+        title: "",
         completed: false,
         dateRetrieved: "",
         dateCompleted: ""
@@ -151,7 +151,7 @@ class Thing extends Component {
     let actionArea;
     if (
       !this.state.todaysThing.completed &&
-      this.state.todaysThing.title !== "good things come to those who wait..."
+      this.state.todaysThing.title !== ""
     ) {
       actionArea = (
         <View>
@@ -166,9 +166,7 @@ class Thing extends Component {
           </Text>
         </View>
       );
-    } else if (
-      this.state.todaysThing.title !== "good things come to those who wait..."
-    ) {
+    } else if (this.state.todaysThing.title !== "") {
       actionArea = (
         <Text style={styles.basicText}>
           {encouragement[Math.floor(Math.random() * encouragement.length)] +
