@@ -26,5 +26,47 @@
   { "title": "Give someone a hug.", "id": 24 },
   { "title": "Go for a walk.", "id": 25 },
   { "title": "Read for fun.", "id": 26 },
-  { "title": "Do more than is asked of you.", "id": 27 }
+  { "title": "Do more than is asked of you.", "id": 27 },
+  { "title": "Share something you’ve been saving.", "id": 28 },
+  { "title": "Start a new tradition.", "id": 29 },
+  { "title": "Affirm yourself by writing down a win you had.", "id": 30 },
+  {
+    "title": "Help a friend see the silver lining in their situation.",
+    "id": 31
+  },
+  { "title": "Ask someone to share one of their accomplishments.", "id": 32 },
+  { "title": "Make some plans you’ll look forward to.", "id": 33 },
+  {
+    "title": "Give away something you don’t need to someone who might.",
+    "id": 34
+  },
+  { "title": "Write a list of things you’re thankful for.", "id": 35 },
+  { "title": "Throw an impromptu party.", "id": 36 },
+  { "title": "Try learning a new skill.", "id": 37 },
+  { "title": "Take care of a plant.", "id": 38 },
+  { "title": "Enjoy a short nap.", "id": 39 },
+  { "title": "Take a break from social media.", "id": 40 },
+  { "title": "Share this app with someone who might enjoy it.", "id": 41 },
+  { "title": "Mentor someone who looks up to you.", "id": 42 },
+  { "title": "Treat yourself to a tasty food treat.", "id": 43 },
+  { "title": "Recall a time when you experienced joy.", "id": 44 },
+  { "title": "Share some good advice you’ve received.", "id": 45 },
+  { "title": "Deliver a hand-written note.", "id": 46 },
+  { "title": "Donate your time or talents to someone else.", "id": 47 },
+  { "title": "Tell someone why you appreciate them.", "id": 48 },
+  { "title": "Get someone flowers.", "id": 49 },
+  { "title": "Volunteer in your community.", "id": 50 },
+  { "title": "Share a meal with someone you enjoy.", "id": 51 },
+  { "title": "Play a game with someone.", "id": 52 },
+  { "title": "Make food for someone.", "id": 53 },
+  { "title": "Make a list of things you like about yourself.", "id": 54 },
+  { "title": "Spend some time thinkinga about causes you support.", "id": 55 },
+  { "title": "Do a random act of kindness.", "id": 56 },
+  { "title": "Let someone else go first.", "id": 57 },
+  { "title": "Whistle a fun tune.", "id": 58 },
+  {
+    "title": "Ask someone older than you about their search for happiness.",
+    "id": 59
+  },
+  { "title": "Spend time around an animal.", "id": 60 }
 ]
