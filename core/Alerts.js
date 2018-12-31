@@ -8,8 +8,7 @@ export default class Alerts {
       [
         {
           text: "Ok",
-          onPress: () =>
-            console.log("Tried to get a second thing after completing one"),
+          onPress: () => (this.alertPresent = false),
           style: "cancel"
         }
       ]

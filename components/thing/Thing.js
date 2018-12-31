@@ -27,18 +27,24 @@ class Thing extends Component {
       completedThingToday: false
     };
     alerts.cantDoThing = alerts.cantDoThing.bind(this);
+    alerts.oneThingPerDay = alerts.oneThingPerDay.bind(this);
   }
+  alertPresent = false;
 
   componentWillMount() {
-    // DEV USE ONLY: reset item status for testing
-    // storage.store("lastCompletedThing", JSON.stringify(this.state.todaysThing));
+    // DEV USE ONLY:
+    // storage.store("lastCompletedThing", JSON.stringify(this.state.todaysThing)); // reset item status for testing
+    // this.getNewThing(); // get new thing on each load
 
     // Handle shake events
     RNShake.addEventListener("ShakeEvent", () => {
       if (!this.state.completedThingToday) {
         this.getNewThing();
       } else {
-        alerts.oneThingPerDay();
+        if (!this.alertPresent) {
+          alerts.oneThingPerDay();
+          this.alertPresent = true;
+        }
       }
       ReactNativeHapticFeedback.trigger("impactLight", true);
     });
