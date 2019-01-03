@@ -34,7 +34,7 @@
     "title": "Help a friend see the silver lining in their situation.",
     "id": 31
   },
-  { "title": "Ask someone to share one of their accomplishments.", "id": 32 },
+  { "title": "Ask someone to share a win.", "id": 32 },
   { "title": "Make some plans you’ll look forward to.", "id": 33 },
   {
     "title": "Give away something you don’t need to someone who might.",
@@ -42,7 +42,7 @@
   },
   { "title": "Write a list of things you’re thankful for.", "id": 35 },
   { "title": "Throw an impromptu party.", "id": 36 },
-  { "title": "Try learning a new skill.", "id": 37 },
+  { "title": "Work on learning a new skill.", "id": 37 },
   { "title": "Take care of a plant.", "id": 38 },
   { "title": "Enjoy a short nap.", "id": 39 },
   { "title": "Take a break from social media.", "id": 40 },
