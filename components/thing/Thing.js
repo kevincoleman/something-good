@@ -134,6 +134,7 @@ class Thing extends Component {
         });
         console.log(error);
       });
+    this.props.colorChange();
   }
 
   handleCompleteThing() {
