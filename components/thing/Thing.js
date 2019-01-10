@@ -10,28 +10,25 @@ import Alerts from "../../core/Alerts";
 import Utility from "../../core/Utility";
 let PushNotification = require("react-native-push-notification");
 
-PushNotification.configure({
-  // (required) Called when a remote or local notification is opened or received
-  onNotification: function(notification) {
-    console.log("NOTIFICATION:", notification);
-    // process the notification
-    // required on iOS only (see fetchCompletionHandler docs: https://facebook.github.io/react-native/docs/pushnotificationios.html)
-    notification.finish(PushNotificationIOS.FetchResult.NoData);
-  }
-});
-
-// PushNotification.localNotificationSchedule({
-//   message: "Remember to do something good today",
-//   repeatType: "day",
-//   date: new Date(Date.now() + 60 * 1000)
-// });
-
-PushNotification.setApplicationIconBadgeNumber(1);
-
 const alerts = new Alerts();
 const utility = new Utility();
 const tracker = new GoogleAnalyticsTracker("UA-127958837-1");
 const storage = new Storage();
+
+PushNotification.configure({
+  onNotification: function(notification) {
+    notification.finish(PushNotificationIOS.FetchResult.NoData);
+  }
+});
+
+// Set notifications to start, repeating at 8am
+PushNotification.localNotificationSchedule({
+  message: "Remember to do something good today",
+  repeatType: "day",
+  date: utility.getNextMorning()
+});
+
+PushNotification.setApplicationIconBadgeNumber(1);
 
 class Thing extends Component {
   constructor() {
@@ -52,7 +49,7 @@ class Thing extends Component {
 
   componentWillMount() {
     // DEV USE ONLY:
-    storage.store("lastCompletedThing", JSON.stringify(this.state.todaysThing)); // reset item status for testing
+    // storage.store("lastCompletedThing", JSON.stringify(this.state.todaysThing)); // reset item status for testing
     // this.getNewThing(); // get new thing on each load
 
     // Handle shake events

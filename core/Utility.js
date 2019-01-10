@@ -1,10 +1,21 @@
 export default class Utility {
   getToday() {
-    const today = new Date();
+    const now = new Date();
     // console.warn(today.toISOString());
-    return (
-      today.getFullYear() + "-" + today.getMonth() + 1 + "-" + today.getDate()
-    );
+    return now.getFullYear() + "-" + now.getMonth() + 1 + "-" + now.getDate();
+  }
+
+  getNextMorning() {
+    const now = new Date();
+    let modifier = 0;
+    if (now.getHours() >= 8) {
+      modifier = 1;
+    }
+    now.setDate(now.getDate() + modifier);
+    now.setHours(8);
+    now.setMinutes(0);
+    now.setMilliseconds(0);
+    return now;
   }
 
   colors = [
