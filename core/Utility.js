@@ -1,7 +1,10 @@
 export default class Utility {
   getToday() {
     const today = new Date();
-    return today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate();
+    // console.warn(today.toISOString());
+    return (
+      today.getFullYear() + "-" + today.getMonth() + 1 + "-" + today.getDate()
+    );
   }
 
   colors = [

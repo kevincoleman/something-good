@@ -4327,6 +4327,10 @@ react-native-haptic-feedback@^1.4.2:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/react-native-haptic-feedback/-/react-native-haptic-feedback-1.4.2.tgz#e15ed66f2ffe9ec886b4098b792591136efd5ee2"
 
+react-native-push-notification@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-push-notification/-/react-native-push-notification-3.1.2.tgz#a6129fb2897773a19c7b42bba1b51a9a4aac7df3"
+
 react-native-shake@^3.2.4:
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/react-native-shake/-/react-native-shake-3.2.4.tgz#e28ca0dc82f3de9e88e9b6cc28709abb9832b6df"

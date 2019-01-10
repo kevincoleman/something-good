@@ -8,6 +8,25 @@ import RNShake from "react-native-shake";
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import Alerts from "../../core/Alerts";
 import Utility from "../../core/Utility";
+let PushNotification = require("react-native-push-notification");
+
+PushNotification.configure({
+  // (required) Called when a remote or local notification is opened or received
+  onNotification: function(notification) {
+    console.log("NOTIFICATION:", notification);
+    // process the notification
+    // required on iOS only (see fetchCompletionHandler docs: https://facebook.github.io/react-native/docs/pushnotificationios.html)
+    notification.finish(PushNotificationIOS.FetchResult.NoData);
+  }
+});
+
+// PushNotification.localNotificationSchedule({
+//   message: "Remember to do something good today",
+//   repeatType: "day",
+//   date: new Date(Date.now() + 60 * 1000)
+// });
+
+PushNotification.setApplicationIconBadgeNumber(1);
 
 const alerts = new Alerts();
 const utility = new Utility();
@@ -33,7 +52,7 @@ class Thing extends Component {
 
   componentWillMount() {
     // DEV USE ONLY:
-    // storage.store("lastCompletedThing", JSON.stringify(this.state.todaysThing)); // reset item status for testing
+    storage.store("lastCompletedThing", JSON.stringify(this.state.todaysThing)); // reset item status for testing
     // this.getNewThing(); // get new thing on each load
 
     // Handle shake events
@@ -61,12 +80,14 @@ class Thing extends Component {
           lastCompleted.dateCompleted !== "" &&
           lastCompleted.dateCompleted == utility.getToday()
         ) {
+          PushNotification.setApplicationIconBadgeNumber(0);
           // don’t get a new item, just use the completed one.
           this.setState({
             todaysThing: lastCompleted,
             completedThingToday: true
           });
         } else {
+          PushNotification.setApplicationIconBadgeNumber(1);
           // if the user hasn’t completed today’s thing, check if it’s already been set.
           storage
             .retrieve("todaysThing")
@@ -138,6 +159,7 @@ class Thing extends Component {
   }
 
   handleCompleteThing() {
+    PushNotification.setApplicationIconBadgeNumber(0);
     const completedThing = {
       title: this.state.todaysThing.title,
       completed: true,

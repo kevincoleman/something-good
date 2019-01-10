@@ -3,6 +3,7 @@ package com.somethinggood;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.mkuczera.RNReactNativeHapticFeedbackPackage;
 import com.clipsub.RNShake.RNShakeEventPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
@@ -27,6 +28,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactNativePushNotificationPackage(),
             new RNReactNativeHapticFeedbackPackage(),
             new RNShakeEventPackage(),
             new RNDeviceInfo(),
