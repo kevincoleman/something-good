@@ -42,7 +42,6 @@ class Thing extends Component {
     // set up notifications
     notifications.configureNotifications();
     notifications.scheduleNotifications();
-    notifications.initBadge(this.state.todaysThing.completed);
 
     // Handle shake events
     RNShake.addEventListener("ShakeEvent", () => {
@@ -63,12 +62,13 @@ class Thing extends Component {
       .retrieve("lastCompletedThing")
       .then(thing => {
         lastCompleted = JSON.parse(thing);
-        // check if the user already did today’s thing...
         if (
           lastCompleted &&
           lastCompleted.dateCompleted !== "" &&
           lastCompleted.dateCompleted == utility.getToday()
         ) {
+          // check if the user already did today’s thing...
+          notifications.removeBadge();
           // don’t get a new item, just use the completed one.
           this.setState({
             todaysThing: lastCompleted,
@@ -76,6 +76,7 @@ class Thing extends Component {
           });
         } else {
           // if the user hasn’t completed today’s thing, check if it’s already been set.
+          notifications.addBadge();
           storage
             .retrieve("todaysThing")
             .then(todaysThing => {

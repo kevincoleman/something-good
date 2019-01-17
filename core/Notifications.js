@@ -30,12 +30,4 @@ export default class Notifications {
   removeBadge() {
     PushNotification.setApplicationIconBadgeNumber(0);
   }
-
-  initBadge(completed) {
-    if (completed) {
-      this.removeBadge();
-    } else {
-      this.addBadge();
-    }
-  }
 }
