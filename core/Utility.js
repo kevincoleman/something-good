@@ -5,15 +5,12 @@ export default class Utility {
     return now.getFullYear() + "-" + now.getMonth() + 1 + "-" + now.getDate();
   }
 
-  getNextMorning() {
+  getNextMidnight() {
     const now = new Date();
-    let modifier = 0;
-    if (now.getHours() >= 8) {
-      modifier = 1;
-    }
-    now.setDate(now.getDate() + modifier);
-    now.setHours(8);
+    now.setDate(now.getDate() + 1);
+    now.setHours(0);
     now.setMinutes(0);
+    now.setSeconds(0);
     now.setMilliseconds(0);
     return now;
   }

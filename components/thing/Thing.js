@@ -8,29 +8,17 @@ import RNShake from "react-native-shake";
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import Alerts from "../../core/Alerts";
 import Utility from "../../core/Utility";
-let PushNotification = require("react-native-push-notification");
+import Notifications from "../../core/Notifications";
 
 const alerts = new Alerts();
 const utility = new Utility();
+const notifications = new Notifications();
 const tracker = new GoogleAnalyticsTracker("UA-127958837-1");
 const storage = new Storage();
 
-PushNotification.configure({
-  onNotification: function(notification) {
-    notification.finish(PushNotificationIOS.FetchResult.NoData);
-  }
-});
-
-// Set notifications to start, repeating at 8am
-PushNotification.localNotificationSchedule({
-  message: "Remember to do something good today",
-  repeatType: "day",
-  date: utility.getNextMorning()
-});
-
-PushNotification.setApplicationIconBadgeNumber(1);
-
 class Thing extends Component {
+  alertPresent = false;
+
   constructor() {
     super();
     this.state = {
@@ -45,12 +33,16 @@ class Thing extends Component {
     alerts.cantDoThing = alerts.cantDoThing.bind(this);
     alerts.oneThingPerDay = alerts.oneThingPerDay.bind(this);
   }
-  alertPresent = false;
 
   componentWillMount() {
     // DEV USE ONLY:
     // storage.store("lastCompletedThing", JSON.stringify(this.state.todaysThing)); // reset item status for testing
     // this.getNewThing(); // get new thing on each load
+
+    // set up notifications
+    notifications.configureNotifications();
+    notifications.scheduleNotifications();
+    notifications.initBadge(this.state.todaysThing.completed);
 
     // Handle shake events
     RNShake.addEventListener("ShakeEvent", () => {
@@ -77,14 +69,12 @@ class Thing extends Component {
           lastCompleted.dateCompleted !== "" &&
           lastCompleted.dateCompleted == utility.getToday()
         ) {
-          PushNotification.setApplicationIconBadgeNumber(0);
           // don’t get a new item, just use the completed one.
           this.setState({
             todaysThing: lastCompleted,
             completedThingToday: true
           });
         } else {
-          PushNotification.setApplicationIconBadgeNumber(1);
           // if the user hasn’t completed today’s thing, check if it’s already been set.
           storage
             .retrieve("todaysThing")
@@ -156,7 +146,7 @@ class Thing extends Component {
   }
 
   handleCompleteThing() {
-    PushNotification.setApplicationIconBadgeNumber(0);
+    notifications.removeBadge();
     const completedThing = {
       title: this.state.todaysThing.title,
       completed: true,
