@@ -13,13 +13,16 @@ export default class Notifications {
     });
   }
 
-  scheduleNotifications() {
+  cancelAllNotifications() {
     PushNotification.cancelAllLocalNotifications();
+  }
+
+  scheduleNotifications() {
     PushNotification.localNotificationSchedule({
       message: "Remember to do something good today",
       number: "1",
       repeatType: "day",
-      date: utility.getNextMidnight()
+      date: utility.getNextMorning()
     });
   }
 

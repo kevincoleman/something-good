@@ -7,11 +7,9 @@ import DeviceInfo from "react-native-device-info";
 import RNShake from "react-native-shake";
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import Alerts from "../../core/Alerts";
-import Utility from "../../core/Utility";
 import Notifications from "../../core/Notifications";
 
 const alerts = new Alerts();
-const utility = new Utility();
 const notifications = new Notifications();
 const tracker = new GoogleAnalyticsTracker("UA-127958837-1");
 const storage = new Storage();
@@ -41,6 +39,7 @@ class Thing extends Component {
 
     // set up notifications
     notifications.configureNotifications();
+    notifications.cancelAllNotifications();
     notifications.scheduleNotifications();
 
     // Handle shake events
@@ -65,29 +64,29 @@ class Thing extends Component {
         if (
           lastCompleted &&
           lastCompleted.dateCompleted !== "" &&
-          lastCompleted.dateCompleted == utility.getToday()
+          lastCompleted.dateCompleted == new Date().toDateString()
         ) {
-          // check if the user already did today’s thing...
+          // user did today’s thing: just use that thing
           notifications.removeBadge();
-          // don’t get a new item, just use the completed one.
           this.setState({
             todaysThing: lastCompleted,
             completedThingToday: true
           });
         } else {
-          // if the user hasn’t completed today’s thing, check if it’s already been set.
+          // user didn’t do today’s thing: check if thing is already set
           notifications.addBadge();
           storage
             .retrieve("todaysThing")
             .then(todaysThing => {
               if (
                 todaysThing === undefined ||
-                JSON.parse(todaysThing).dateRetrieved !== utility.getToday()
+                JSON.parse(todaysThing).dateRetrieved !==
+                  new Date().toDateString()
               ) {
-                // if today’s thing hasn’t been set, set it.
+                // today’s thing hasn’t been set: set it.
                 this.getNewThing();
               } else {
-                // if today’s thing has been set, use it.
+                // today’s thing has been set: use it.
                 this.setState({ todaysThing: JSON.parse(todaysThing) });
               }
             })
@@ -114,7 +113,7 @@ class Thing extends Component {
         const todaysThing = {
           title: thing.title,
           completed: false,
-          dateRetrieved: utility.getToday(),
+          dateRetrieved: new Date().toDateString(),
           id: thing.id
         };
         tracker.trackEvent(
@@ -134,7 +133,7 @@ class Thing extends Component {
         const todaysThing = {
           title: "Smile at someone.",
           completed: false,
-          dateRetrieved: utility.getToday(),
+          dateRetrieved: new Date().toDateString(),
           id: 0
         };
         storage.store("todaysThing", JSON.stringify(todaysThing));
@@ -148,10 +147,17 @@ class Thing extends Component {
 
   handleCompleteThing() {
     notifications.removeBadge();
+
+    // skip today’s notification and start again tomorrow
+    if (new Date().getHours() < 9) {
+      notifications.cancelAllNotifications();
+      notifications.scheduleNotifications();
+    }
+
     const completedThing = {
       title: this.state.todaysThing.title,
       completed: true,
-      dateCompleted: utility.getToday()
+      dateCompleted: new Date().toDateString()
     };
     tracker.trackEvent(
       "completeThing",

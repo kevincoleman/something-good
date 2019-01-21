@@ -1,14 +1,8 @@
 export default class Utility {
-  getToday() {
-    const now = new Date();
-    // console.warn(today.toISOString());
-    return now.getFullYear() + "-" + now.getMonth() + 1 + "-" + now.getDate();
-  }
-
-  getNextMidnight() {
+  getNextMorning() {
     const now = new Date();
     now.setDate(now.getDate() + 1);
-    now.setHours(0);
+    now.setHours(9);
     now.setMinutes(0);
     now.setSeconds(0);
     now.setMilliseconds(0);
