@@ -44,14 +44,16 @@ class Thing extends Component {
 
     // Handle shake events
     RNShake.addEventListener("ShakeEvent", () => {
+      if (this.alertPresent) {
+        return false;
+      }
       if (!this.state.completedThingToday) {
         this.getNewThing();
-        ReactNativeHapticFeedback.trigger("impactLight", true);
-      } else if (!this.alertPresent) {
+      } else {
         alerts.oneThingPerDay();
         this.alertPresent = true;
-        ReactNativeHapticFeedback.trigger("impactLight", true);
       }
+      ReactNativeHapticFeedback.trigger("impactLight", true);
     });
 
     // prep app state for the day

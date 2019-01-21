@@ -16,6 +16,7 @@ export default class Alerts {
   }
 
   cantDoThing() {
+    this.alertPresent = true;
     Alert.alert(
       "Can’t do today’s thing?",
       "Never fear. You can get a new thing by shaking your device.",
@@ -23,13 +24,17 @@ export default class Alerts {
         {
           text: "Cancel",
           onPress: () => {
+            this.alertPresent = false;
             return false;
           },
           style: "cancel"
         },
         {
           text: "Get one now",
-          onPress: () => this.getNewThing(),
+          onPress: () => {
+            this.alertPresent = false;
+            this.getNewThing();
+          },
           style: "default"
         }
       ]
