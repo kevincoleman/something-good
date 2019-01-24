@@ -68,5 +68,16 @@
     "title": "Ask someone older than you about their search for happiness.",
     "id": 59
   },
-  { "title": "Spend time around an animal.", "id": 60 }
+  { "title": "Spend time around an animal.", "id": 60 },
+  { "title": "Get outside your comfort zone.", "id": 61 },
+  { "title": "Arrive early.", "id": 62 },
+  { "title": "Pause to appreciate beauty.", "id": 63 },
+  { "title": "Get rid of something you don’t need.", "id": 64 },
+  { "title": "Spend some time in the sun.", "id": 65 },
+  { "title": "Learn about a different culture.", "id": 66 },
+  { "title": "Wash your hands.", "id": 67 },
+  { "title": "Dress up.", "id": 68 },
+  { "title": "Shop local.", "id": 69 },
+  { "title": "Eat something healthy.", "id": 70 },
+  { "title": "Say “no” to something bad.", "id": 71 }
 ]
