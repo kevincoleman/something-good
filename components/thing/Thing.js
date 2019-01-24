@@ -32,14 +32,13 @@ class Thing extends Component {
     alerts.oneThingPerDay = alerts.oneThingPerDay.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     // DEV USE ONLY:
     // storage.store("lastCompletedThing", JSON.stringify(this.state.todaysThing)); // reset item status for testing
     // this.getNewThing(); // get new thing on each load
 
-    // set up notifications
+    // set up daily notifications
     notifications.configureNotifications();
-    notifications.cancelAllNotifications();
     notifications.scheduleNotifications();
 
     // Handle shake events
@@ -147,14 +146,6 @@ class Thing extends Component {
   }
 
   handleCompleteThing() {
-    notifications.removeBadge();
-
-    // skip today’s notification and start again tomorrow
-    if (new Date().getHours() < 9) {
-      notifications.cancelAllNotifications();
-      notifications.scheduleNotifications();
-    }
-
     const completedThing = {
       title: this.state.todaysThing.title,
       completed: true,
@@ -167,7 +158,12 @@ class Thing extends Component {
         completedThing
       })
     );
-    storage.store("lastCompletedThing", JSON.stringify(completedThing));
+    storage
+      .store("lastCompletedThing", JSON.stringify(completedThing))
+      .then(() => {
+        notifications.removeBadge();
+        notifications.scheduleNotifications();
+      });
     this.setState({ todaysThing: completedThing, completedThingToday: true });
   }
 

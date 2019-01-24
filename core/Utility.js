@@ -1,7 +1,7 @@
 export default class Utility {
-  getNextMorning() {
+  getMorning(modifier) {
     const now = new Date();
-    now.setDate(now.getDate() + 1);
+    now.setDate(now.getDate() + modifier);
     now.setHours(9);
     now.setMinutes(0);
     now.setSeconds(0);
