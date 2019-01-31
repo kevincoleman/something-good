@@ -48,7 +48,7 @@
   { "title": "Take a break from social media.", "id": 40 },
   { "title": "Share this app with someone who might enjoy it.", "id": 41 },
   { "title": "Mentor someone who looks up to you.", "id": 42 },
-  { "title": "Treat yourself to a tasty food treat.", "id": 43 },
+  { "title": "Treat yourself to a tasty food.", "id": 43 },
   { "title": "Recall a time when you experienced joy.", "id": 44 },
   { "title": "Share some good advice you’ve received.", "id": 45 },
   { "title": "Deliver a hand-written note.", "id": 46 },
@@ -79,5 +79,9 @@
   { "title": "Dress up.", "id": 68 },
   { "title": "Shop local.", "id": 69 },
   { "title": "Eat something healthy.", "id": 70 },
-  { "title": "Say “no” to something bad.", "id": 71 }
+  { "title": "Say “no” to something bad.", "id": 71 },
+  { "title": "Relax for at least 10 minutes.", "id": 72 },
+  { "title": "Share something good you’ve done.", "id": 73 },
+  { "title": "Experience 5 minutes of silence.", "id": 74 },
+  { "title": "Try a new food.", "id": 75 }
 ]
