@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Platform
+} from "react-native";
 import { Storage } from "../../services/storage";
 import encouragement from "../../core/encouragement.js";
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";

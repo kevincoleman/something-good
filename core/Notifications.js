@@ -1,3 +1,4 @@
+import { Platform } from "react-native";
 import Utility from "./Utility";
 import { Storage } from "../services/storage";
 
@@ -11,7 +12,9 @@ export default class Notifications {
   configureNotifications() {
     PushNotification.configure({
       onNotification: function(notification) {
-        notification.finish(PushNotificationIOS.FetchResult.NoData);
+        if (Platform.OS === "ios") {
+          notification.finish(PushNotificationIOS.FetchResult.NoData);
+        }
       }
     });
   }
@@ -45,6 +48,7 @@ export default class Notifications {
       } else {
         nextTime = utility.getMorning(1);
       }
+
       PushNotification.localNotificationSchedule({
         message: "Remember to do something good today",
         number: "1",
