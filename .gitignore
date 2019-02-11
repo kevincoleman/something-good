@@ -24,9 +24,11 @@ project.xcworkspace
 
 # Android/IntelliJ
 #
+my-release-key.keystore
 build/
 .idea
 .gradle
+gradle.properties
 local.properties
 *.iml
 
