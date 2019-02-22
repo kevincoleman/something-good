@@ -53,7 +53,7 @@ class Thing extends Component {
         return false;
       }
       if (!this.state.completedThingToday) {
-        this.getNewThing();
+        this.skipThing();
       } else {
         alerts.oneThingPerDay();
         this.alertPresent = true;
@@ -107,6 +107,19 @@ class Thing extends Component {
       });
   }
 
+  skipThing() {
+    const skippedThing = this.state.todaysThing;
+    tracker.trackEvent(
+      "skipThing",
+      JSON.stringify({
+        thing: skippedThing,
+        status: "skipped",
+        uid: DeviceInfo.getUniqueID()
+      })
+    );
+    this.getNewThing();
+  }
+
   getNewThing() {
     fetch("https://things.somethinggood.app/goodThings.json", {
       Accept: "application/json"
@@ -125,8 +138,9 @@ class Thing extends Component {
         tracker.trackEvent(
           "loadNewThing",
           JSON.stringify({
-            uid: DeviceInfo.getUniqueID(),
-            todaysThing
+            thing: todaysThing,
+            status: "loaded",
+            uid: DeviceInfo.getUniqueID()
           })
         );
         storage.store("todaysThing", JSON.stringify(todaysThing));
@@ -160,8 +174,9 @@ class Thing extends Component {
     tracker.trackEvent(
       "completeThing",
       JSON.stringify({
-        uid: DeviceInfo.getUniqueID(),
-        completedThing
+        thing: completedThing,
+        status: "completed",
+        uid: DeviceInfo.getUniqueID()
       })
     );
     storage
