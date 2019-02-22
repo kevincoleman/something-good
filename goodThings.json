@@ -103,5 +103,15 @@
   { "title": "Send someone a hand-written letter.", "id": 92 },
   { "title": "Give your change away.", "id": 93 },
   { "title": "Tell someone why you admire them.", "id": 94 },
-  { "title": "Donate to a local food bank.", "id": 95 }
+  { "title": "Donate to a local food bank.", "id": 95 },
+  { "title": "Watch a sunrise.", "id": 96 },
+  { "title": "Watch a sunset.", "id": 97 },
+  { "title": "Write your future self a nice note.", "id": 98 },
+  { "title": "Play a musical instrument.", "id": 99 },
+  { "title": "Do a few minutes of stretches.", "id": 100 },
+  { "title": "Give someone a ride.", "id": 101 },
+  { "title": "Experience nature.", "id": 102 },
+  { "title": "Take a trip down memory lane", "id": 103 },
+  { "title": "Thank your parents.", "id": 104 },
+  { "title": "Remind someone that they’re loved.", "id": 105 }
 ]
