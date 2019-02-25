@@ -1,0 +1,212 @@
+[
+  { "title": "Smile at someone.", "difficulty": 2, "id": 0 },
+  { "title": "Say something nice.", "difficulty": 2, "id": 1 },
+  { "title": "Listen to someone intently.", "difficulty": 3, "id": 2 },
+  {
+    "title": "Write someone an enouraging note or text.",
+    "difficulty": 5,
+    "id": 3
+  },
+  { "title": "Give a gift.", "difficulty": 7, "id": 4 },
+  {
+    "title": "Check in on someone who looks up to you.",
+    "difficulty": 5,
+    "id": 5
+  },
+  { "title": "Donate to a good cause.", "difficulty": 8, "id": 6 },
+  { "title": "Bring someone a glass of water.", "difficulty": 6, "id": 7 },
+  { "title": "Throw away some trash you find.", "difficulty": 4, "id": 8 },
+  { "title": "Forgive someone.", "difficulty": 7, "id": 9 },
+  { "title": "Thank someone.", "difficulty": 5, "id": 10 },
+  {
+    "title": "Spend time with someone who will enjoy it.",
+    "difficulty": 5,
+    "id": 11
+  },
+  { "title": "Exercise.", "difficulty": 6, "id": 12 },
+  { "title": "Clean up a mess.", "difficulty": 4, "id": 13 },
+  { "title": "Travel using green transportation.", "difficulty": 7, "id": 14 },
+  { "title": "Treat yourself to something small.", "difficulty": 2, "id": 15 },
+  { "title": "Ask someone for forgiveness.", "difficulty": 8, "id": 16 },
+  { "title": "Help take care of a friend.", "difficulty": 5, "id": 17 },
+  {
+    "title": "Share your favorite song with someone.",
+    "difficulty": 3,
+    "id": 18
+  },
+  {
+    "title": "Spend some time contemplating and writing.",
+    "difficulty": 4,
+    "id": 19
+  },
+  {
+    "title": "Video call someone you haven’t seen in a while.",
+    "difficulty": 5,
+    "id": 20
+  },
+  { "title": "Drink a glass of water.", "difficulty": 3, "id": 21 },
+  { "title": "Get some fresh air.", "difficulty": 2, "id": 22 },
+  {
+    "title": "Try again at something you didn’t complete.",
+    "difficulty": 4,
+    "id": 23
+  },
+  { "title": "Give someone a hug.", "difficulty": 4, "id": 24 },
+  { "title": "Go for a walk.", "difficulty": 4, "id": 25 },
+  { "title": "Read for fun.", "difficulty": 4, "id": 26 },
+  { "title": "Do more than is asked of you.", "difficulty": 5, "id": 27 },
+  { "title": "Share something you’ve been saving.", "difficulty": 4, "id": 28 },
+  { "title": "Start a new tradition.", "difficulty": 6, "id": 29 },
+  {
+    "title": "Affirm yourself by writing down a win you had.",
+    "difficulty": 3,
+    "id": 30
+  },
+  {
+    "title": "Help a friend see the silver lining in their situation.",
+    "difficulty": 6,
+    "id": 31
+  },
+  { "title": "Ask someone to share a win.", "difficulty": 6, "id": 32 },
+  {
+    "title": "Make some plans you’ll look forward to.",
+    "difficulty": 4,
+    "id": 33
+  },
+  {
+    "title": "Give away something you don’t need to someone who might.",
+    "difficulty": 7,
+    "id": 34
+  },
+  {
+    "title": "Write a list of things you’re thankful for.",
+    "difficulty": 5,
+    "id": 35
+  },
+  { "title": "Throw an impromptu party.", "difficulty": 9, "id": 36 },
+  { "title": "Work on learning a new skill.", "difficulty": 6, "id": 37 },
+  { "title": "Take care of a plant.", "difficulty": 4, "id": 38 },
+  { "title": "Enjoy a short nap.", "difficulty": 4, "id": 39 },
+  { "title": "Take a break from social media.", "difficulty": 5, "id": 40 },
+  {
+    "title": "Share this app with someone who might enjoy it.",
+    "difficulty": 4,
+    "id": 41
+  },
+  { "title": "Mentor someone who looks up to you.", "difficulty": 7, "id": 42 },
+  { "title": "Treat yourself to a tasty food.", "difficulty": 5, "id": 43 },
+  {
+    "title": "Recall a time when you experienced joy.",
+    "difficulty": 2,
+    "id": 44
+  },
+  {
+    "title": "Share some good advice you’ve received.",
+    "difficulty": 3,
+    "id": 45
+  },
+  { "title": "Deliver a hand-written note.", "difficulty": 3, "id": 46 },
+  {
+    "title": "Donate your time or talents to someone else.",
+    "difficulty": 7,
+    "id": 47
+  },
+  {
+    "title": "Tell someone why you appreciate them.",
+    "difficulty": 4,
+    "id": 48
+  },
+  { "title": "Get someone flowers.", "difficulty": 8, "id": 49 },
+  { "title": "Volunteer in your community.", "difficulty": 9, "id": 50 },
+  {
+    "title": "Share a meal with someone you enjoy.",
+    "difficulty": 5,
+    "id": 51
+  },
+  { "title": "Play a game with someone.", "difficulty": 5, "id": 52 },
+  { "title": "Make food for someone.", "difficulty": 6, "id": 53 },
+  {
+    "title": "Make a list of things you like about yourself.",
+    "difficulty": 5,
+    "id": 54
+  },
+  {
+    "title": "Spend some time thinking about causes you support.",
+    "difficulty": 3,
+    "id": 55
+  },
+  { "title": "Do a random act of kindness.", "difficulty": 4, "id": 56 },
+  { "title": "Let someone else go first.", "difficulty": 2, "id": 57 },
+  { "title": "Whistle a fun tune.", "difficulty": 1, "id": 58 },
+  {
+    "title": "Ask someone older than you about their search for happiness.",
+    "difficulty": 5,
+    "id": 59
+  },
+  { "title": "Spend time around an animal.", "difficulty": 4, "id": 60 },
+  { "title": "Get outside your comfort zone.", "difficulty": 7, "id": 61 },
+  { "title": "Arrive early.", "difficulty": 3, "id": 62 },
+  { "title": "Pause to appreciate beauty.", "difficulty": 2, "id": 63 },
+  {
+    "title": "Get rid of something you don’t need.",
+    "difficulty": 3,
+    "id": 64
+  },
+  { "title": "Spend some time in the sun.", "difficulty": 3, "id": 65 },
+  { "title": "Learn about a different culture.", "difficulty": 5, "id": 66 },
+  { "title": "Wash your hands.", "difficulty": 1, "id": 67 },
+  { "title": "Dress up.", "difficulty": 3, "id": 68 },
+  { "title": "Shop local.", "difficulty": 4, "id": 69 },
+  { "title": "Eat something healthy.", "difficulty": 4, "id": 70 },
+  { "title": "Say “no” to something bad.", "difficulty": 5, "id": 71 },
+  { "title": "Relax for at least 10 minutes.", "difficulty": 3, "id": 72 },
+  { "title": "Share something good you’ve done.", "difficulty": 1, "id": 73 },
+  { "title": "Experience 5 minutes of silence.", "difficulty": 1, "id": 74 },
+  { "title": "Try a new food.", "difficulty": 5, "id": 75 },
+  { "title": "Settle a dispute peacefully.", "difficulty": 7, "id": 76 },
+  { "title": "Slow down and breathe deep.", "difficulty": 2, "id": 77 },
+  { "title": "Make the healthy choice.", "difficulty": 5, "id": 78 },
+  { "title": "Make a new friend.", "difficulty": 6, "id": 79 },
+  { "title": "Laugh with someone.", "difficulty": 4, "id": 80 },
+  {
+    "title": "Tell someone who made a difference in your life.",
+    "difficulty": 4,
+    "id": 81
+  },
+  {
+    "title": "Tell someone why you’re grateful for them.",
+    "difficulty": 4,
+    "id": 82
+  },
+  { "title": "Bake cookies to give away.", "difficulty": 9, "id": 83 },
+  { "title": "Hold the door for someone.", "difficulty": 3, "id": 84 },
+  { "title": "Send someone a post card.", "difficulty": 5, "id": 85 },
+  { "title": "Pay for someone’s meal or treat.", "difficulty": 6, "id": 86 },
+  {
+    "title": "Give a positive review of a product or service.",
+    "difficulty": 7,
+    "id": 87
+  },
+  {
+    "title": "Leave a surprise note for a loved one.",
+    "difficulty": 5,
+    "id": 88
+  },
+  { "title": "Share.", "difficulty": 2, "id": 89 },
+  { "title": "Leave a good tip.", "difficulty": 4, "id": 90 },
+  { "title": "Help someone carry a load.", "difficulty": 5, "id": 91 },
+  { "title": "Send someone a hand-written letter.", "difficulty": 6, "id": 92 },
+  { "title": "Give your change away.", "difficulty": 6, "id": 93 },
+  { "title": "Tell someone why you admire them.", "difficulty": 6, "id": 94 },
+  { "title": "Donate to a local food bank.", "difficulty": 8, "id": 95 },
+  { "title": "Watch a sunrise.", "difficulty": 8, "id": 96 },
+  { "title": "Watch a sunset.", "difficulty": 4, "id": 97 },
+  { "title": "Write your future self a nice note.", "difficulty": 5, "id": 98 },
+  { "title": "Play a musical instrument.", "difficulty": 5, "id": 99 },
+  { "title": "Do a few minutes of stretches.", "difficulty": 4, "id": 100 },
+  { "title": "Give someone a ride.", "difficulty": 6, "id": 101 },
+  { "title": "Experience nature.", "difficulty": 4, "id": 102 },
+  { "title": "Take a trip down memory lane", "difficulty": 2, "id": 103 },
+  { "title": "Thank your parents.", "difficulty": 3, "id": 104 },
+  { "title": "Remind someone that they’re loved.", "difficulty": 4, "id": 105 }
+]
