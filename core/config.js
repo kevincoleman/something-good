@@ -1,4 +1,15 @@
-let encouragement = [
+export const colors = [
+  "442B48",
+  "6320EE",
+  "D81E5B",
+  "F15152",
+  "66635B",
+  "A4036F",
+  "16DB93",
+  "F29E4C"
+];
+
+export const encouragement = [
   "Great job! The world is a better place because of you.",
   "Solid work. Sometimes it’s the little things that save lives.",
   "Well done. You did a good thing!",
@@ -8,5 +19,3 @@ let encouragement = [
   "One more good deed done!",
   "Lots of small things make one big thing."
 ];
-
-export default encouragement;

@@ -1,13 +1,7 @@
 import React, { Component } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Platform
-} from "react-native";
-import { Storage } from "../../services/storage";
-import encouragement from "../../core/encouragement.js";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { Storage } from "../../core/storage";
+import { encouragement } from "../../core/config";
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 import DeviceInfo from "react-native-device-info";
 import RNShake from "react-native-shake";
@@ -40,7 +34,7 @@ class Thing extends Component {
 
   componentDidMount() {
     // DEV USE ONLY:
-    // storage.store("lastCompletedThing", JSON.stringify(this.state.todaysThing)); // reset item status for testing
+    storage.store("lastCompletedThing", JSON.stringify(this.state.todaysThing)); // reset item status for testing
     // this.getNewThing(); // get new thing on each load
 
     // set up daily notifications

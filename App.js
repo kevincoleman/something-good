@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
 import Thing from "./components/thing/Thing";
-import Utility from "./core/Utility";
-
-const utility = new Utility();
+import { colors } from "./core/config";
 
 export default class App extends Component {
   constructor(props) {
@@ -15,9 +13,7 @@ export default class App extends Component {
   }
 
   colorChange() {
-    const newColor = `#${
-      utility.colors[Math.floor(Math.random() * utility.colors.length)]
-    }`;
+    const newColor = `#${colors[Math.floor(Math.random() * colors.length)]}`;
     this.setState({
       backgroundColor: newColor
     });

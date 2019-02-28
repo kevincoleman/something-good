@@ -1,10 +1,18 @@
 import { Platform } from "react-native";
-import Utility from "./Utility";
-import { Storage } from "../services/storage";
+import { Storage } from "../core/storage";
 
 let PushNotification = require("react-native-push-notification");
-const utility = new Utility();
 const storage = new Storage();
+
+function getMorning(modifier) {
+  const now = new Date();
+  now.setDate(now.getDate() + modifier);
+  now.setHours(9);
+  now.setMinutes(0);
+  now.setSeconds(0);
+  now.setMilliseconds(0);
+  return now;
+}
 
 export default class Notifications {
   constructor() {}
@@ -42,11 +50,11 @@ export default class Notifications {
       }
 
       if (completed) {
-        nextTime = utility.getMorning(1);
+        nextTime = getMorning(1);
       } else if (new Date().getHours() < 9) {
-        nextTime = utility.getMorning(0);
+        nextTime = getMorning(0);
       } else {
-        nextTime = utility.getMorning(1);
+        nextTime = getMorning(1);
       }
 
       PushNotification.localNotificationSchedule({
