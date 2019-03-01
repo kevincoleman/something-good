@@ -3,7 +3,7 @@ import DeviceInfo from "react-native-device-info";
 
 const gaTracker = new GoogleAnalyticsTracker("UA-127958837-1");
 
-export default class Tracker {
+export class Tracker {
   constructor(gaTracker) {
     this.gaTracker = gaTracker;
   }

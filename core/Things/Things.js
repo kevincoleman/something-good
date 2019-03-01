@@ -1,15 +1,15 @@
 import { ThingGateway } from "./ThingGateway.js";
 import { Storage } from "../Storage";
-import Tracker from "../Tracker";
-import Notifications from "../Notifications.js";
-import { colors } from "../config.js";
+import { Tracker } from "../Tracker";
+import { Notifications } from "../Notifications.js";
+import { colors } from "../Config.js";
 
 const thingGateway = new ThingGateway();
 const storage = new Storage();
 const tracker = new Tracker();
 const notifications = new Notifications();
 
-export default class Things {
+export class Things {
   constructor(thingGateway, storage, tracker) {
     this.thingGateway = thingGateway;
     this.storage = storage;

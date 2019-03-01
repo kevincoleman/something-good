@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { encouragement } from "../../core/config";
+import { encouragement } from "../../core/Config";
 import RNShake from "react-native-shake";
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 
-import Alerts from "../../core/Alerts";
-import Things from "../../core/Things/Things";
-import Notifications from "../../core/Notifications";
+import { Alerts } from "../../core/Alerts";
+import { Things } from "../../core/Things/Things";
+import { Notifications } from "../../core/Notifications";
 import { Storage } from "../../core/Storage";
-import Tracker from "../../core/Tracker";
+import { Tracker } from "../../core/Tracker";
 
 const alerts = new Alerts();
 const things = new Things();

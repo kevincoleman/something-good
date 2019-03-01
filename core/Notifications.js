@@ -14,7 +14,7 @@ function getMorning(modifier) {
   return now;
 }
 
-export default class Notifications {
+export class Notifications {
   constructor() {}
 
   configureNotifications() {

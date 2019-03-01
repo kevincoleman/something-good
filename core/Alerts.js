@@ -1,6 +1,6 @@
 import { Alert } from "react-native";
 
-export default class Alerts {
+export class Alerts {
   oneThingPerDay() {
     Alert.alert(
       "Only one thing per day!",
