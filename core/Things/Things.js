@@ -1,16 +1,20 @@
 import { ThingGateway } from "./ThingGateway.js";
 import { Storage } from "../Storage";
 import Tracker from "../Tracker";
+import Notifications from "../Notifications.js";
+import { colors } from "../config.js";
 
 const thingGateway = new ThingGateway();
 const storage = new Storage();
 const tracker = new Tracker();
+const notifications = new Notifications();
 
 export default class Things {
   constructor(thingGateway, storage, tracker) {
     this.thingGateway = thingGateway;
     this.storage = storage;
     this.tracker = tracker;
+    this.notifications = notifications;
   }
 
   async getNewThing() {
@@ -23,15 +27,7 @@ export default class Things {
     // track event in GA
     tracker.trackEvent("loadNewThing", { thing: thing });
 
-    console.warn("get a new color");
     return thing;
-  }
-
-  getViewData() {
-    return {
-      todaysThing: {},
-      encouragement: ""
-    };
   }
 
   initThing(thing) {
@@ -39,9 +35,25 @@ export default class Things {
       title: thing.title,
       completed: false,
       dateRetrieved: new Date().toDateString(),
+      color: `#${colors[Math.floor(Math.random() * colors.length)]}`,
       id: thing.id
     };
   }
 
-  completeThing(thing) {}
+  completeThing(thing) {
+    // update thing state
+    thing.completed = true;
+    thing.dateCompleted = new Date().toDateString();
+
+    // udpate local storage
+    storage.store("lastCompletedThing", JSON.stringify(thing));
+
+    // update & schedule notifications
+    notifications.removeBadge();
+    notifications.scheduleNotifications();
+
+    // analytics
+    tracker.trackEvent("completeThing", { thing: thing });
+    return thing;
+  }
 }

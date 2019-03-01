@@ -1,27 +1,30 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { Storage } from "../../core/Storage";
 import { encouragement } from "../../core/config";
 import RNShake from "react-native-shake";
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
+
 import Alerts from "../../core/Alerts";
-import Notifications from "../../core/Notifications";
 import Things from "../../core/Things/Things";
+import Notifications from "../../core/Notifications";
+import { Storage } from "../../core/Storage";
+import Tracker from "../../core/Tracker";
 
 const alerts = new Alerts();
 const things = new Things();
 const notifications = new Notifications();
 const storage = new Storage();
+const tracker = new Tracker();
 
 class Thing extends Component {
   alertPresent = false;
 
-  constructor(alerts, things, notifications, storage) {
+  constructor(things, notifications, storage) {
     super();
-    this.alerts = alerts;
     this.things = things;
     this.notifications = notifications;
     this.storage = storage;
+    this.tracker = tracker;
 
     this.state = {
       todaysThing: {
@@ -32,8 +35,8 @@ class Thing extends Component {
       },
       completedThingToday: false
     };
-    // alerts.cantDoThing = alerts.cantDoThing.bind(this);
-    // alerts.oneThingPerDay = alerts.oneThingPerDay.bind(this);
+    alerts.cantDoThing = alerts.cantDoThing.bind(this);
+    alerts.oneThingPerDay = alerts.oneThingPerDay.bind(this);
   }
 
   componentDidMount() {
@@ -41,9 +44,12 @@ class Thing extends Component {
     // storage.store("lastCompletedThing", JSON.stringify(this.state.todaysThing)); // reset item status for testing
 
     // get new thing on each load
-    things.getNewThing().then(thing => {
-      this.setState({ todaysThing: thing });
-    });
+    // things.getNewThing().then(thing => {
+    //   this.setState({
+    //     todaysThing: thing,
+    //     completedThingToday: false
+    //   });
+    // });
 
     // set up daily notifications
     notifications.configureNotifications();
@@ -55,7 +61,7 @@ class Thing extends Component {
         return false;
       }
       if (!this.state.completedThingToday) {
-        this.skipThing();
+        this.handleSkipThing();
       } else {
         alerts.oneThingPerDay();
         this.alertPresent = true;
@@ -93,7 +99,10 @@ class Thing extends Component {
               ) {
                 // today’s thing hasn’t been set: set it.
                 let thing = things.getNewThing();
-                this.setState({ todaysThing: thing });
+                this.setState({
+                  todaysThing: thing,
+                  thingCompletedToday: false
+                });
               } else {
                 // today’s thing has been set: use it.
                 this.setState({ todaysThing: JSON.parse(todaysThing) });
@@ -101,7 +110,10 @@ class Thing extends Component {
             })
             .catch(error => {
               things.getNewThing().then(thing => {
-                this.setState({ todaysThing: thing });
+                this.setState({
+                  todaysThing: thing,
+                  completedThingToday: false
+                });
               });
               console.error(error);
             });
@@ -112,87 +124,32 @@ class Thing extends Component {
       });
   }
 
-  skipThing() {
-    // const skippedThing = this.state.todaysThing;
-    // tracker.trackEvent("skipThing", { thing: skippedThing });
-    // things.getNewThing().then(thing => {
-    //   this.setState({ todaysThing: thing });
-    // });
+  handleSkipThing() {
+    const skippedThing = this.state.todaysThing;
+    tracker.trackEvent("skipThing", { thing: skippedThing });
+    things.getNewThing().then(thing => {
+      this.setState({
+        todaysThing: thing,
+        completedThingToday: false
+      });
+    });
   }
 
-  // getNewThing() {
-  //   fetch("https://things.somethinggood.app/goodThings.json", {
-  //     Accept: "application/json"
-  //   })
-  //     .then(res => {
-  //       return res.json();
-  //     })
-  //     .then(things => {
-  //       const thing = things[Math.floor(Math.random() * things.length)];
-  //       const todaysThing = {
-  //         title: thing.title,
-  //         completed: false,
-  //         dateRetrieved: new Date().toDateString(),
-  //         id: thing.id
-  //       };
-  //       tracker.trackEvent(
-  //         "loadNewThing",
-  //         JSON.stringify({
-  //           thing: todaysThing,
-  //           status: "loaded",
-  //           uid: DeviceInfo.getUniqueID()
-  //         })
-  //       );
-  //       storage.store("todaysThing", JSON.stringify(todaysThing));
-  //       this.setState({
-  //         todaysThing: todaysThing
-  //       });
-  //     })
-  //     .catch(error => {
-  //       // default in case there’s no connection
-  //       const todaysThing = {
-  //         title: "Smile at someone.",
-  //         completed: false,
-  //         dateRetrieved: new Date().toDateString(),
-  //         id: 0
-  //       };
-  //       storage.store("todaysThing", JSON.stringify(todaysThing));
-  //       this.setState({
-  //         todaysThing: todaysThing
-  //       });
-  //       console.log(error);
-  //     });
-  //   this.props.colorChange();
-  // }
-
   handleCompleteThing() {
-    const completedThing = {
-      title: this.state.todaysThing.title,
-      completed: true,
-      dateCompleted: new Date().toDateString()
-    };
-    // tracker.trackEvent("completeThing", {
-    //   thing: completedThing,
-    //   status: "completed",
-    //   uid: DeviceInfo.getUniqueID()
-    // });
-    storage
-      .store("lastCompletedThing", JSON.stringify(completedThing))
-      .then(() => {
-        notifications.removeBadge();
-        notifications.scheduleNotifications();
-      });
+    const completedThing = things.completeThing(this.state.todaysThing);
     this.setState({ todaysThing: completedThing, completedThingToday: true });
   }
 
   render() {
+    styles.container.backgroundColor = this.state.todaysThing.color;
+
     let actionArea;
     if (
       !this.state.todaysThing.completed &&
       this.state.todaysThing.title !== ""
     ) {
       actionArea = (
-        <View>
+        <View style={styles.actionArea}>
           <TouchableOpacity
             style={styles.button}
             onPress={this.handleCompleteThing.bind(this)}
@@ -206,16 +163,23 @@ class Thing extends Component {
       );
     } else if (this.state.todaysThing.title !== "") {
       actionArea = (
-        <Text style={styles.basicText}>
-          {encouragement[Math.floor(Math.random() * encouragement.length)] +
-            " "}
-          Come back tomorrow for another good thing to do.
-        </Text>
+        <View style={styles.actionArea}>
+          <Text style={styles.basicText}>
+            {encouragement[Math.floor(Math.random() * encouragement.length)] +
+              " "}
+            Come back tomorrow for another good thing to do.
+          </Text>
+        </View>
       );
     }
 
     return (
-      <View style={styles.container}>
+      <View
+        style={{
+          ...styles.container,
+          backgroundColor: this.state.todaysThing.color
+        }}
+      >
         <Text
           style={
             this.state.todaysThing.completed
@@ -234,15 +198,22 @@ class Thing extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 40,
     flexDirection: "column",
     justifyContent: "space-between"
   },
   todaysThing: {
     fontSize: 44,
+    paddingTop: 100,
     color: "#ffffff"
+  },
+  actionArea: {
+    paddingBottom: 40
   },
   completedThing: {
     fontSize: 44,
+    paddingTop: 100,
+    paddingBottom: 40,
     color: "rgba(255, 255, 255, 0.8)",
     textDecorationLine: "line-through"
   },

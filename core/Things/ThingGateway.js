@@ -7,7 +7,6 @@ export class ThingGateway {
       }
     )
       .then(res => {
-        // console.warn(res);
         return res.json();
       })
       .catch(err => {

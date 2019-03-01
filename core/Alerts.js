@@ -33,7 +33,7 @@ export default class Alerts {
           text: "Get one now",
           onPress: () => {
             this.alertPresent = false;
-            this.skipThing();
+            this.handleSkipThing();
           },
           style: "default"
         }
