@@ -1,6 +1,8 @@
 import { AsyncStorage } from "react-native";
 
 export class Storage {
+  constructor() {}
+
   async store(name, data) {
     try {
       await AsyncStorage.setItem(`@${name}`, data);

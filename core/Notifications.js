@@ -1,5 +1,5 @@
 import { Platform } from "react-native";
-import { Storage } from "../core/storage";
+import { Storage } from "./Storage";
 
 let PushNotification = require("react-native-push-notification");
 const storage = new Storage();
