@@ -1,24 +1,22 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { getRandomEncouragement } from "../../core/Config";
-import RNShake from "react-native-shake";
-import ReactNativeHapticFeedback from "react-native-haptic-feedback";
+import { View, Text } from "react-native";
 
-import { Alerts } from "../../core/Alerts";
+import CompleteButton from "../completeButton/CompleteButton";
+
 import { Things } from "../../core/Things/Things";
 import { Notifications } from "../../core/Notifications";
 import { Storage } from "../../core/Storage";
 import { Tracker } from "../../core/Tracker";
+import { Alerts } from "../../core/Alerts";
+import { styles } from "./Thing.styles";
 
-const alerts = new Alerts();
 const things = new Things();
 const notifications = new Notifications();
 const storage = new Storage();
 const tracker = new Tracker();
+const alerts = new Alerts();
 
 class Thing extends Component {
-  alertPresent = false;
-
   constructor(things, notifications, storage) {
     super();
     this.things = things;
@@ -36,8 +34,11 @@ class Thing extends Component {
       },
       completedThingToday: false
     };
+
     alerts.cantDoThing = alerts.cantDoThing.bind(this);
     alerts.oneThingPerDay = alerts.oneThingPerDay.bind(this);
+    this.handleCompleteThing = this.handleCompleteThing.bind(this);
+    this.handleSkipThing = this.handleSkipThing.bind(this);
   }
 
   componentDidMount() {
@@ -55,20 +56,6 @@ class Thing extends Component {
     // set up daily notifications
     notifications.configureNotifications();
     notifications.scheduleNotifications();
-
-    // Handle shake events
-    RNShake.addEventListener("ShakeEvent", () => {
-      if (this.alertPresent) {
-        return false;
-      }
-      if (!this.state.completedThingToday) {
-        this.handleSkipThing();
-      } else {
-        alerts.oneThingPerDay();
-        this.alertPresent = true;
-      }
-      ReactNativeHapticFeedback.trigger("impactLight", true);
-    });
 
     // prep app state for the day
     let lastCompleted = {};
@@ -143,79 +130,6 @@ class Thing extends Component {
   }
 
   render() {
-    const styles = StyleSheet.create({
-      container: {
-        flex: 1,
-        padding: 40,
-        flexDirection: "column",
-        justifyContent: "space-between",
-        backgroundColor: "red"
-      },
-      todaysThing: {
-        fontSize: 44,
-        paddingTop: 100,
-        color: "#ffffff"
-      },
-      actionArea: {
-        paddingBottom: 40
-      },
-      completedThing: {
-        fontSize: 44,
-        paddingTop: 100,
-        paddingBottom: 40,
-        color: "rgba(255, 255, 255, 0.8)",
-        textDecorationLine: "line-through"
-      },
-      button: {
-        alignItems: "center",
-        padding: 20,
-        backgroundColor: "#ffffff",
-        borderRadius: 3
-      },
-      buttonText: {
-        fontSize: 24,
-        color: "#333333"
-      },
-      cantDo: {
-        color: "#ffffff",
-        textAlign: "center",
-        marginTop: 15
-      },
-      basicText: {
-        color: "#ffffff",
-        fontSize: 18
-      }
-    });
-
-    let actionArea;
-    if (
-      !this.state.todaysThing.completed &&
-      this.state.todaysThing.title !== ""
-    ) {
-      actionArea = (
-        <View style={styles.actionArea}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={this.handleCompleteThing.bind(this)}
-          >
-            <Text style={styles.buttonText}>I did it!</Text>
-          </TouchableOpacity>
-          <Text style={styles.cantDo} onPress={alerts.cantDoThing}>
-            I can’t do that thing today.
-          </Text>
-        </View>
-      );
-    } else if (this.state.todaysThing.title !== "") {
-      actionArea = (
-        <View style={styles.actionArea}>
-          <Text style={styles.basicText}>
-            {getRandomEncouragement() + " "}
-            Come back tomorrow for another good thing to do.
-          </Text>
-        </View>
-      );
-    }
-
     return (
       <View
         style={[
@@ -232,7 +146,13 @@ class Thing extends Component {
         >
           {this.state.todaysThing.title}
         </Text>
-        {actionArea}
+        <CompleteButton
+          completed={this.state.todaysThing.completed}
+          handleCompleteThing={this.handleCompleteThing}
+          handleSkipThing={this.handleSkipThing}
+          cantDoThing={alerts.cantDoThing}
+          oneThingPerDay={alerts.oneThingPerDay}
+        />
       </View>
     );
   }
