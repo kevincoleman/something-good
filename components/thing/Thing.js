@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { encouragement } from "../../core/Config";
+import { getRandomEncouragement } from "../../core/Config";
 import RNShake from "react-native-shake";
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 
@@ -31,7 +31,8 @@ class Thing extends Component {
         title: "",
         completed: false,
         dateRetrieved: "",
-        dateCompleted: ""
+        dateCompleted: "",
+        color: ""
       },
       completedThingToday: false
     };
@@ -98,10 +99,11 @@ class Thing extends Component {
                   new Date().toDateString()
               ) {
                 // today’s thing hasn’t been set: set it.
-                let thing = things.getNewThing();
-                this.setState({
-                  todaysThing: thing,
-                  thingCompletedToday: false
+                let thing = things.getNewThing().then(thing => {
+                  this.setState({
+                    todaysThing: thing,
+                    thingCompletedToday: false
+                  });
                 });
               } else {
                 // today’s thing has been set: use it.
@@ -141,7 +143,49 @@ class Thing extends Component {
   }
 
   render() {
-    styles.container.backgroundColor = this.state.todaysThing.color;
+    const styles = StyleSheet.create({
+      container: {
+        flex: 1,
+        padding: 40,
+        flexDirection: "column",
+        justifyContent: "space-between",
+        backgroundColor: "red"
+      },
+      todaysThing: {
+        fontSize: 44,
+        paddingTop: 100,
+        color: "#ffffff"
+      },
+      actionArea: {
+        paddingBottom: 40
+      },
+      completedThing: {
+        fontSize: 44,
+        paddingTop: 100,
+        paddingBottom: 40,
+        color: "rgba(255, 255, 255, 0.8)",
+        textDecorationLine: "line-through"
+      },
+      button: {
+        alignItems: "center",
+        padding: 20,
+        backgroundColor: "#ffffff",
+        borderRadius: 3
+      },
+      buttonText: {
+        fontSize: 24,
+        color: "#333333"
+      },
+      cantDo: {
+        color: "#ffffff",
+        textAlign: "center",
+        marginTop: 15
+      },
+      basicText: {
+        color: "#ffffff",
+        fontSize: 18
+      }
+    });
 
     let actionArea;
     if (
@@ -165,8 +209,7 @@ class Thing extends Component {
       actionArea = (
         <View style={styles.actionArea}>
           <Text style={styles.basicText}>
-            {encouragement[Math.floor(Math.random() * encouragement.length)] +
-              " "}
+            {getRandomEncouragement() + " "}
             Come back tomorrow for another good thing to do.
           </Text>
         </View>
@@ -175,10 +218,10 @@ class Thing extends Component {
 
     return (
       <View
-        style={{
-          ...styles.container,
-          backgroundColor: this.state.todaysThing.color
-        }}
+        style={[
+          styles.container,
+          { backgroundColor: this.state.todaysThing.color }
+        ]}
       >
         <Text
           style={
@@ -194,48 +237,5 @@ class Thing extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 40,
-    flexDirection: "column",
-    justifyContent: "space-between"
-  },
-  todaysThing: {
-    fontSize: 44,
-    paddingTop: 100,
-    color: "#ffffff"
-  },
-  actionArea: {
-    paddingBottom: 40
-  },
-  completedThing: {
-    fontSize: 44,
-    paddingTop: 100,
-    paddingBottom: 40,
-    color: "rgba(255, 255, 255, 0.8)",
-    textDecorationLine: "line-through"
-  },
-  button: {
-    alignItems: "center",
-    padding: 20,
-    backgroundColor: "#ffffff",
-    borderRadius: 3
-  },
-  buttonText: {
-    fontSize: 24,
-    color: "#333333"
-  },
-  cantDo: {
-    color: "#ffffff",
-    textAlign: "center",
-    marginTop: 15
-  },
-  basicText: {
-    color: "#ffffff",
-    fontSize: 18
-  }
-});
 
 export default Thing;

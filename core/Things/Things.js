@@ -2,7 +2,7 @@ import { ThingGateway } from "./ThingGateway.js";
 import { Storage } from "../Storage";
 import { Tracker } from "../Tracker";
 import { Notifications } from "../Notifications.js";
-import { colors } from "../Config.js";
+import { getRandomColor } from "../Config.js";
 
 const thingGateway = new ThingGateway();
 const storage = new Storage();
@@ -35,7 +35,7 @@ export class Things {
       title: thing.title,
       completed: false,
       dateRetrieved: new Date().toDateString(),
-      color: `#${colors[Math.floor(Math.random() * colors.length)]}`,
+      color: `#${getRandomColor()}`,
       id: thing.id
     };
   }
