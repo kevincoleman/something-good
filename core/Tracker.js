@@ -9,6 +9,7 @@ export class Tracker {
   }
 
   trackEvent(name, data) {
+    this.appendUID(data);
     gaTracker.trackEvent(`${name}`, JSON.stringify(data));
   }
 
