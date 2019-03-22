@@ -3,11 +3,11 @@ package com.somethinggood;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
+import com.clipsub.RNShake.RNShakeEventPackage;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.mkuczera.RNReactNativeHapticFeedbackPackage;
-import com.clipsub.RNShake.RNShakeEventPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
-import com.idehub.GoogleAnalyticsBridge.GoogleAnalyticsBridgePackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -28,11 +28,11 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new AsyncStoragePackage(),
+            new RNShakeEventPackage(),
             new ReactNativePushNotificationPackage(),
             new RNReactNativeHapticFeedbackPackage(),
-            new RNShakeEventPackage(),
-            new RNDeviceInfo(),
-            new GoogleAnalyticsBridgePackage()
+            new RNDeviceInfo()
       );
     }
 
@@ -51,5 +51,14 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
+  }
+
+  @Override
+  protected List<ReactPackage> getPackages() {
+    return Arrays.<ReactPackage>asList(
+        new MainReactPackage(),
+        // Step 2; register package:
+        new GoogleAnalyticsBridgePackage()
+    );
   }
 }

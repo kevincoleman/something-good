@@ -4,26 +4,30 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest",
-    "deploy-things": "gh-pages -d goodThings"
+    "test": "jest"
   },
   "dependencies": {
-    "gh-pages": "^2.0.1",
-    "react": "16.5.0",
-    "react-native": "0.57.2",
+    "@react-native-community/async-storage": "^1.2.1",
+    "react": "16.8.3",
+    "react-native": "0.59.1",
     "react-native-device-info": "^0.24.3",
-    "react-native-google-analytics-bridge": "^6.1.2",
+    "react-native-google-analytics-bridge": "^7.1.0",
     "react-native-haptic-feedback": "^1.4.2",
     "react-native-push-notification": "^3.1.2",
-    "react-native-shake": "^3.2.4"
+    "react-native-shake": "^3.3.0"
   },
   "devDependencies": {
-    "babel-jest": "23.6.0",
-    "jest": "23.6.0",
-    "metro-react-native-babel-preset": "0.48.0",
-    "react-test-renderer": "16.5.0"
+    "@babel/core": "^7.4.0",
+    "@babel/runtime": "^7.4.2",
+    "babel-jest": "^24.5.0",
+    "jest": "^24.5.0",
+    "metro-react-native-babel-preset": "^0.53.1",
+    "react-test-renderer": "16.8.3"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "transformIgnorePatterns": [
+      "/node_modules/@react-native-community/async-storage/(?!(lib))"
+    ]
   }
 }
