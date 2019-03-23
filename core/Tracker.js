@@ -1,19 +1,10 @@
-import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 import DeviceInfo from "react-native-device-info";
 
-const gaTracker = new GoogleAnalyticsTracker("UA-127958837-1");
-
 export class Tracker {
-  constructor(gaTracker) {
-    this.gaTracker = gaTracker;
+  constructor() {
   }
 
   trackEvent(name, data) {
-    this.appendUID(data);
-    gaTracker.trackEvent(`${name}`, JSON.stringify(data));
-  }
-
-  appendUID(data) {
-    data.uid = DeviceInfo.getUniqueID();
+    // run tracking event, including device info
   }
 }
