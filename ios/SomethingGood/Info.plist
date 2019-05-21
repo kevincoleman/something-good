@@ -39,6 +39,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>If given access, Something Good will use location for basic demographics reporting to ensure proper localization (language support) in future app iterations.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>If given access, Something Good will use location for basic demographics reporting to ensure proper localization (language support) in future app iterations.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>UILaunchStoryboardName</key>
