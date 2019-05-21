@@ -43,15 +43,16 @@ class Thing extends Component {
 
   componentDidMount() {
     // DEV USE ONLY:
-    // storage.store("lastCompletedThing", JSON.stringify(this.state.todaysThing)); // reset item status for testing
+    // reset item status for testing
+      // storage.store("lastCompletedThing", JSON.stringify(this.state.todaysThing));
 
     // get new thing on each load
-    // things.getNewThing().then(thing => {
-    //   this.setState({
-    //     todaysThing: thing,
-    //     completedThingToday: false
-    //   });
-    // });
+      // things.getNewThing().then(thing => {
+      //   this.setState({
+      //     todaysThing: thing,
+      //     completedThingToday: false
+      //   });
+      // });
 
     // set up daily notifications
     notifications.configureNotifications();
