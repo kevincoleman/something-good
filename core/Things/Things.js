@@ -19,9 +19,7 @@ export class Things {
 
   async getNewThing() {
 
-    // get new random thing from local storage
-
-    // get all the things from API
+    // get all the things from API, local, defaults
     const things = await thingGateway.all();
     
     // store all the things into local storage
