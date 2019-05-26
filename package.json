@@ -11,6 +11,7 @@
     "react": "16.8.3",
     "react-native": "0.59.1",
     "react-native-device-info": "^0.24.3",
+    "react-native-google-analytics-bridge": "^7.1.0",
     "react-native-haptic-feedback": "^1.4.2",
     "react-native-push-notification": "^3.1.2",
     "react-native-shake": "^3.3.0"

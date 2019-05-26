@@ -4421,6 +4421,10 @@ react-native-device-info@^0.24.3:
   version "0.24.3"
   resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-0.24.3.tgz#f15eff8d09fe418eaf5e7c89ddaabbc5ed718fd7"
 
+react-native-google-analytics-bridge@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-google-analytics-bridge/-/react-native-google-analytics-bridge-7.1.0.tgz#f950ad05907467fbd0703649b46dc6ddf5ceb1b0"
+
 react-native-haptic-feedback@^1.4.2:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/react-native-haptic-feedback/-/react-native-haptic-feedback-1.6.0.tgz#32c7fd9bcdb0e639dfd5e3515a238a74e05c4484"

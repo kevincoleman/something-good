@@ -3,6 +3,7 @@ package com.somethinggood;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.idehub.GoogleAnalyticsBridge.GoogleAnalyticsBridgePackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.clipsub.RNShake.RNShakeEventPackage;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
@@ -28,6 +29,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new GoogleAnalyticsBridgePackage(),
             new AsyncStoragePackage(),
             new RNShakeEventPackage(),
             new ReactNativePushNotificationPackage(),
