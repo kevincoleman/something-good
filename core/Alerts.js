@@ -1,23 +1,23 @@
 import { Alert } from "react-native";
 
 export class Alerts {
-  oneThingPerDay() {
-    this.alertPresent = true;
+  oneThingPerDay(context) {
+    context.alertPresent = true;
     Alert.alert(
       "Only one thing per day!",
       "It’s totally tubular that you want to do more good things. This app is just designed to help you do one good thing each day. Come back tomorrow for more!",
       [
         {
           text: "Ok",
-          onPress: () => (this.alertPresent = false),
+          onPress: () => (context.alertPresent = false),
           style: "cancel"
         }
       ]
     );
   }
 
-  cantDoThing() {
-    this.alertPresent = true;
+  cantDoThing(context) {
+    context.alertPresent = true;
     Alert.alert(
       "Can’t do today’s thing?",
       "You can get a new thing if you need it.",
@@ -25,7 +25,7 @@ export class Alerts {
         {
           text: "Never mind",
           onPress: () => {
-            this.alertPresent = false;
+            context.alertPresent = false;
             return false;
           },
           style: "cancel"
@@ -33,7 +33,7 @@ export class Alerts {
         {
           text: "Get a new one",
           onPress: () => {
-            this.alertPresent = false;
+            context.alertPresent = false;
             this.handleSkipThing();
           },
           style: "default"

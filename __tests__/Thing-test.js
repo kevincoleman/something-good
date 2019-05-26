@@ -33,3 +33,8 @@ it("renders a default thing if nothing is passed to it", () => {
       // schedule for 9am today
     // if item completed
       // schedule for tomorrow at 9am
+
+// opens an alert if device is shaken
+// opens an alert if “I can’t do that thing today.” is tapped
+// opens a “one thing a day” alert if device is shaken after item is completed.
+// only allows one alert to be present at a time

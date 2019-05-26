@@ -20,9 +20,9 @@ class CompleteButton extends Component {
         return false;
       }
       if (!this.props.completed) {
-        this.props.cantDoThing();
+        this.props.cantDoThing(this);
       } else {
-        this.props.oneThingPerDay();
+        this.props.oneThingPerDay(this);
       }
       ReactNativeHapticFeedback.trigger("impactLight", true);
     });
