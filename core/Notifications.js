@@ -1,8 +1,4 @@
-import { Platform } from "react-native";
-import { Storage } from "./Storage";
-
 let PushNotification = require("react-native-push-notification");
-const storage = new Storage();
 
 function getMorning(modifier) {
   const now = new Date();
@@ -15,12 +11,15 @@ function getMorning(modifier) {
 }
 
 export class Notifications {
-  constructor() {}
+  constructor(storage, os) {
+    this.storage = storage;
+    this.os = os;
+  }
 
   configureNotifications() {
     PushNotification.configure({
       onNotification: function(notification) {
-        if (Platform.OS === "ios") {
+        if (this.os === "ios") {
           notification.finish(PushNotificationIOS.FetchResult.NoData);
         }
       }
@@ -37,7 +36,7 @@ export class Notifications {
 
     PushNotification.cancelAllLocalNotifications();
 
-    storage.retrieve("lastCompletedThing").then(thing => {
+    this.storage.retrieve("lastCompletedThing").then(thing => {
       lastCompleted = JSON.parse(thing);
       if (
         lastCompleted &&

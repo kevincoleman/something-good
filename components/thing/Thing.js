@@ -3,26 +3,13 @@ import { View, Text } from "react-native";
 
 import CompleteButton from "../completeButton/CompleteButton";
 
-import { Things } from "../../core/Things/Things";
-import { Notifications } from "../../core/Notifications";
-import { Storage } from "../../core/Storage";
-import { Tracker } from "../../core/Tracker";
-import { Alerts } from "../../core/Alerts";
 import { styles } from "./Thing.styles";
 
-const things = new Things();
-const notifications = new Notifications();
-const storage = new Storage();
-const tracker = new Tracker();
-const alerts = new Alerts();
+import {things, notifications, storage, tracker, alerts} from '../../core/factory.js';
 
 class Thing extends Component {
-  constructor(things, notifications, storage) {
+  constructor() {
     super();
-    this.things = things;
-    this.notifications = notifications;
-    this.storage = storage;
-    this.tracker = tracker;
 
     this.state = {
       todaysThing: {

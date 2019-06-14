@@ -1,6 +1,6 @@
-import { Storage } from "../Storage";
+// import { Storage } from "../Storage";
 
-const storage = new Storage();
+// const storage = new Storage();
 
 export class ThingGateway {
 
@@ -31,7 +31,7 @@ export class ThingGateway {
   }
 
   async local() {
-    let localThings = JSON.parse(await storage.retrieve("allThings"));
+    let localThings = JSON.parse(await this.storage.retrieve("allThings"));
     if (localThings) {
       return localThings
     } else {

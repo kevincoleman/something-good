@@ -1,16 +1,7 @@
-import { ThingGateway } from "./ThingGateway.js";
-import { Storage } from "../Storage";
-import { Tracker } from "../Tracker";
-import { Notifications } from "../Notifications.js";
 import { getRandomColor } from "../Config.js";
 
-const thingGateway = new ThingGateway();
-const storage = new Storage();
-const tracker = new Tracker();
-const notifications = new Notifications();
-
 export class Things {
-  constructor(thingGateway, storage, tracker) {
+  constructor(thingGateway, storage, tracker, notifications) {
     this.thingGateway = thingGateway;
     this.storage = storage;
     this.tracker = tracker;
@@ -20,13 +11,13 @@ export class Things {
   async getNewThing() {
 
     // get all the things from API, local, defaults
-    const things = await thingGateway.all();
+    const things = await this.thingGateway.all();
     
     // store all the things into local storage
-    await storage.store("allThings", JSON.stringify(things));
+    await this.storage.store("allThings", JSON.stringify(things));
 
     // retrieve from local storage
-    let localThings = JSON.parse(await storage.retrieve("allThings"));
+    let localThings = JSON.parse(await this.storage.retrieve("allThings"));
 
     // get a random thing
     let thing = localThings[Math.floor(Math.random() * localThings.length)];
@@ -35,10 +26,10 @@ export class Things {
     thing = this.initThing(thing);
 
     // put the thing in local storage
-    await storage.store("todaysThing", JSON.stringify(thing));
+    await this.storage.store("todaysThing", JSON.stringify(thing));
 
     // track event in GA
-    tracker.trackEvent("loadNewThing", { thing: thing });
+    this.tracker.trackEvent("loadNewThing", { thing: thing });
 
     return thing;
   }
@@ -59,14 +50,14 @@ export class Things {
     thing.dateCompleted = new Date().toDateString();
 
     // udpate local storage
-    storage.store("lastCompletedThing", JSON.stringify(thing));
+    this.storage.store("lastCompletedThing", JSON.stringify(thing));
 
     // update & schedule notifications
-    notifications.removeBadge();
-    notifications.scheduleNotifications();
+    this.notifications.removeBadge();
+    this.notifications.scheduleNotifications();
 
     // analytics
-    tracker.trackEvent("completeThing", { thing: thing });
+    this.tracker.trackEvent("completeThing", { thing: thing });
     return thing;
   }
 }
