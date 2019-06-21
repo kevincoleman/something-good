@@ -11,17 +11,20 @@ class Thing extends Component {
   constructor() {
     super();
 
-    this.state = {
-      todaysThing: {
-        title: "",
-        completed: false,
-        dateRetrieved: "",
-        dateCompleted: "",
-        color: ""
-      },
-      completedThingToday: false
-    };
 
+    // this.state = {
+    //   todaysThing: {
+    //     title: "",
+    //     completed: false,
+    //     dateRetrieved: "",
+    //     dateCompleted: "",
+    //     color: ""
+    //   },
+    //   completedThingToday: false
+    // };
+
+    this.state = things.getThing();
+    
     alerts.cantDoThing = alerts.cantDoThing.bind(this);
     alerts.oneThingPerDay = alerts.oneThingPerDay.bind(this);
     this.handleCompleteThing = this.handleCompleteThing.bind(this);
@@ -41,9 +44,16 @@ class Thing extends Component {
       //   });
       // });
 
+
+
+
+
     // set up daily notifications
-    notifications.configureNotifications();
-    notifications.scheduleNotifications();
+    // notifications.configureNotifications();
+    // notifications.scheduleNotifications();
+
+
+    // things.init();
 
     // prep app state for the day
     let lastCompleted = {};
