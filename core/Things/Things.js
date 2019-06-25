@@ -9,7 +9,7 @@ export class Things {
     
     this.state = {
       todaysThing: {
-        title: "hi",
+        title: "",
         completed: false,
         dateRetrieved: "",
         dateCompleted: "",
