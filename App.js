@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
 import Thing from "./components/thing/Thing";
-import {notifications} from './core/factory.js';
+import { notifications, things, storage } from './core/factory.js';
 
 export default class App extends Component {
   constructor(props) {
@@ -11,6 +11,69 @@ export default class App extends Component {
   componentDidMount() {
     notifications.configureNotifications();
     notifications.scheduleNotifications();
+    this.init();
+  }
+
+  init() {
+    let lastCompleted = {};
+    storage
+      .retrieve("lastCompletedThing")
+      .then(thing => {
+        lastCompleted = JSON.parse(thing);
+        if (
+          lastCompleted &&
+          lastCompleted.dateCompleted !== "" &&
+          lastCompleted.dateCompleted == new Date().toDateString()
+        ) {
+          // user did today’s thing: just use that thing
+          notifications.removeBadge();
+          things.update({
+            todaysThing: lastCompleted,
+            completedThingToday: true
+          });
+        } else {
+          // user didn’t do today’s thing: check if thing is already set
+          notifications.addBadge();
+          storage
+            .retrieve("todaysThing")
+            .then(todaysThing => {
+              if (
+                todaysThing === null ||
+                JSON.parse(todaysThing).dateRetrieved !==
+                  new Date().toDateString()
+              ) {
+                // today’s thing hasn’t been set: set it.
+                let thing = things.getNewThing().then(thing => {
+                  things.update({
+                    todaysThing: thing,
+                    thingCompletedToday: false
+                  });
+                });
+              } else {
+                // today’s thing has been set: use it.
+                things.update({
+                  todaysThing: JSON.parse(todaysThing),
+                  thingCompletedToday: false,
+                })
+                // things.state.todaysThing = JSON.parse(todaysThing);
+                // this.setState({ todaysThing: JSON.parse(todaysThing) });
+              }
+            })
+            .catch(error => {
+              things.getNewThing().then(thing => {
+                // TODO: handle error properly!
+                things.update({
+                  todaysThing: thing,
+                  completedThingToday: false
+                });
+              });
+              console.error(error);
+            });
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 
   render() {

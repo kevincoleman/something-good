@@ -11,18 +11,6 @@ class Thing extends Component {
   constructor() {
     super();
 
-
-    // this.state = {
-    //   todaysThing: {
-    //     title: "",
-    //     completed: false,
-    //     dateRetrieved: "",
-    //     dateCompleted: "",
-    //     color: ""
-    //   },
-    //   completedThingToday: false
-    // };
-
     this.state = things.getThing();
     
     alerts.cantDoThing = alerts.cantDoThing.bind(this);
@@ -32,6 +20,13 @@ class Thing extends Component {
   }
 
   componentDidMount() {
+
+    things.subscribe((thing) => {
+      this.setState(thing);
+    });
+    
+    // TODO: use debug config var or something
+
     // DEV USE ONLY:
     // reset item status for testing
       // storage.store("lastCompletedThing", JSON.stringify(this.state.todaysThing));
@@ -43,72 +38,6 @@ class Thing extends Component {
       //     completedThingToday: false
       //   });
       // });
-
-
-
-
-
-    // set up daily notifications
-    // notifications.configureNotifications();
-    // notifications.scheduleNotifications();
-
-
-    // things.init();
-
-    // prep app state for the day
-    let lastCompleted = {};
-    storage
-      .retrieve("lastCompletedThing")
-      .then(thing => {
-        lastCompleted = JSON.parse(thing);
-        if (
-          lastCompleted &&
-          lastCompleted.dateCompleted !== "" &&
-          lastCompleted.dateCompleted == new Date().toDateString()
-        ) {
-          // user did today’s thing: just use that thing
-          notifications.removeBadge();
-          this.setState({
-            todaysThing: lastCompleted,
-            completedThingToday: true
-          });
-        } else {
-          // user didn’t do today’s thing: check if thing is already set
-          notifications.addBadge();
-          storage
-            .retrieve("todaysThing")
-            .then(todaysThing => {
-              if (
-                todaysThing === null ||
-                JSON.parse(todaysThing).dateRetrieved !==
-                  new Date().toDateString()
-              ) {
-                // today’s thing hasn’t been set: set it.
-                let thing = things.getNewThing().then(thing => {
-                  this.setState({
-                    todaysThing: thing,
-                    thingCompletedToday: false
-                  });
-                });
-              } else {
-                // today’s thing has been set: use it.
-                this.setState({ todaysThing: JSON.parse(todaysThing) });
-              }
-            })
-            .catch(error => {
-              things.getNewThing().then(thing => {
-                this.setState({
-                  todaysThing: thing,
-                  completedThingToday: false
-                });
-              });
-              console.error(error);
-            });
-        }
-      })
-      .catch(error => {
-        console.error(error);
-      });
   }
 
   handleSkipThing() {
