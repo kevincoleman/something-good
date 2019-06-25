@@ -8,7 +8,7 @@ export default class App extends Component {
     super(props);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     notifications.configureNotifications();
     notifications.scheduleNotifications();
     this.init();
@@ -28,8 +28,7 @@ export default class App extends Component {
           // user did today’s thing: just use that thing
           notifications.removeBadge();
           things.update({
-            todaysThing: lastCompleted,
-            completedThingToday: true
+            todaysThing: lastCompleted
           });
         } else {
           // user didn’t do today’s thing: check if thing is already set
@@ -43,12 +42,7 @@ export default class App extends Component {
                   new Date().toDateString()
               ) {
                 // today’s thing hasn’t been set: set it.
-                let thing = things.getNewThing().then(thing => {
-                  things.update({
-                    todaysThing: thing,
-                    thingCompletedToday: false
-                  });
-                });
+                things.getNewThing();
               } else {
                 // today’s thing has been set: use it.
                 things.update({
@@ -60,13 +54,7 @@ export default class App extends Component {
               }
             })
             .catch(error => {
-              things.getNewThing().then(thing => {
-                // TODO: handle error properly!
-                things.update({
-                  todaysThing: thing,
-                  completedThingToday: false
-                });
-              });
+              things.getNewThing();
               console.error(error);
             });
         }

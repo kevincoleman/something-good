@@ -30,10 +30,14 @@ class Things {
     this.onChangeHandler = onChangeHandler;
   }
   
-  complete() {
+  complete(done) {
     // complete thing...
     
     this.onChangeHandler(this.thing);    
+  }
+
+  skip(done) {
+
   }
 }
 

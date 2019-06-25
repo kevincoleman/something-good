@@ -1,31 +1,19 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { getRandomEncouragement } from "../../core/Config";
-import RNShake from "react-native-shake";
-import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 
 import { styles } from "./CompleteButton.styles";
+import { alerts } from "../../core/factory";
 
 class CompleteButton extends Component {
-  alertPresent = false;
 
   constructor(props) {
     super(props);
+
   }
 
-  componentDidMount() {
-    // Handle shake events
-    RNShake.addEventListener("ShakeEvent", () => {
-      if (this.alertPresent) {
-        return false;
-      }
-      if (!this.props.completed) {
-        this.props.cantDoThing(this);
-      } else {
-        this.props.oneThingPerDay(this);
-      }
-      ReactNativeHapticFeedback.trigger("impactLight", true);
-    });
+  cantDoThing() {
+    alerts.cantDoThing();
   }
 
   render() {
@@ -37,7 +25,7 @@ class CompleteButton extends Component {
         >
           <Text style={styles.buttonText}>I did it!</Text>
         </TouchableOpacity>
-        <Text style={styles.cantDo} onPress={this.props.cantDoThing}>
+        <Text style={styles.cantDo} onPress={this.cantDoThing}>
           I can’t do that thing today.
         </Text>
       </View>

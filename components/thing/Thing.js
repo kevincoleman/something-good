@@ -1,20 +1,19 @@
 import React, { Component } from "react";
 import { View, Text } from "react-native";
+import RNShake from "react-native-shake";
+import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 
 import CompleteButton from "../completeButton/CompleteButton";
 
 import { styles } from "./Thing.styles";
 
-import {things, notifications, storage, tracker, alerts} from '../../core/factory.js';
+import {things, storage, alerts} from '../../core/factory.js';
 
 class Thing extends Component {
   constructor() {
     super();
 
-    this.state = things.getThing();
-    
-    alerts.cantDoThing = alerts.cantDoThing.bind(this);
-    alerts.oneThingPerDay = alerts.oneThingPerDay.bind(this);
+    this.state = things.state;
     this.handleCompleteThing = this.handleCompleteThing.bind(this);
     this.handleSkipThing = this.handleSkipThing.bind(this);
   }
@@ -24,36 +23,42 @@ class Thing extends Component {
     things.subscribe((thing) => {
       this.setState(thing);
     });
-    
+
     // TODO: use debug config var or something
 
     // DEV USE ONLY:
     // reset item status for testing
-      // storage.store("lastCompletedThing", JSON.stringify(this.state.todaysThing));
+      // things.getNewThing();
 
-    // get new thing on each load
-      // things.getNewThing().then(thing => {
-      //   this.setState({
-      //     todaysThing: thing,
-      //     completedThingToday: false
-      //   });
-      // });
-  }
-
-  handleSkipThing() {
-    const skippedThing = this.state.todaysThing;
-    tracker.trackEvent("skipThing", { thing: skippedThing });
-    things.getNewThing().then(thing => {
-      this.setState({
-        todaysThing: thing,
-        completedThingToday: false
-      });
+          // Handle shake events
+    RNShake.addEventListener("ShakeEvent", () => {
+      if (alerts.state.alertPresent) {
+        return false;
+      }
+      if (!things.state.todaysThing.completed) {
+        alerts.cantDoThing();
+      } else {
+        alerts.oneThingPerDay();
+      }
+      ReactNativeHapticFeedback.trigger("impactLight", true);
     });
   }
 
+  handleSkipThing() {
+    things.skipThing();
+    // const skippedThing = this.state.todaysThing;
+    // tracker.trackEvent("skipThing", { thing: skippedThing });
+    // things.getNewThing().then(thing => {
+    //   this.setState({
+    //     todaysThing: thing
+    //   });
+    // });
+  }
+
   handleCompleteThing() {
-    const completedThing = things.completeThing(this.state.todaysThing);
-    this.setState({ todaysThing: completedThing, completedThingToday: true });
+    things.completeThing();
+    // const completedThing = things.completeThing(this.state.todaysThing);
+    // this.setState({ todaysThing: completedThing });
   }
 
   render() {
@@ -77,8 +82,6 @@ class Thing extends Component {
           completed={this.state.todaysThing.completed}
           handleCompleteThing={this.handleCompleteThing}
           handleSkipThing={this.handleSkipThing}
-          cantDoThing={alerts.cantDoThing}
-          oneThingPerDay={alerts.oneThingPerDay}
         />
       </View>
     );

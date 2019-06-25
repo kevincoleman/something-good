@@ -1,23 +1,30 @@
 import { Alert } from "react-native";
+import { things } from './factory.js';
 
 export class Alerts {
-  oneThingPerDay(context) {
-    context.alertPresent = true;
+  constructor() {
+    this.state = {
+      alertPresent: false
+    }
+  }
+
+  oneThingPerDay() {
+    this.state.alertPresent = true;
     Alert.alert(
       "Only one thing per day!",
       "It’s totally tubular that you want to do more good things. This app is just designed to help you do one good thing each day. Come back tomorrow for more!",
       [
         {
           text: "Ok",
-          onPress: () => (context.alertPresent = false),
+          onPress: () => (this.state.alertPresent = false),
           style: "cancel"
         }
       ]
     );
   }
 
-  cantDoThing(context) {
-    context.alertPresent = true;
+  cantDoThing() {
+    this.state.alertPresent = true;
     Alert.alert(
       "Can’t do today’s thing?",
       "You can get a new thing if you need it.",
@@ -25,7 +32,7 @@ export class Alerts {
         {
           text: "Never mind",
           onPress: () => {
-            context.alertPresent = false;
+            this.state.alertPresent = false;
             return false;
           },
           style: "cancel"
@@ -33,8 +40,8 @@ export class Alerts {
         {
           text: "Get a new one",
           onPress: () => {
-            context.alertPresent = false;
-            this.handleSkipThing();
+            this.state.alertPresent = false;
+            things.skipThing();
           },
           style: "default"
         }
