@@ -37,6 +37,7 @@ export class Things {
     thing = this.initThing(thing);
     await this.storage.store("todaysThing", JSON.stringify(thing));
     this.update({todaysThing: thing});
+    return thing;
   }
 
   async skipThing() {

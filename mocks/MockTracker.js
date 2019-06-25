@@ -1,7 +1,7 @@
 export class MockTracker {
 
   trackEvent(name, data) {
-    console.log(`trackEvent(${name}, ${data}) called`);
+    // console.log(`trackEvent(${name}, ${data}) called`);
   }
 
 }
