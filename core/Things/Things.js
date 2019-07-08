@@ -30,13 +30,31 @@ export class Things {
   }
 
   async getThing() {
+
+    // get all the things
     const things = await this.thingGateway.all();
+
+    // store all the things locally
     await this.storage.store("allThings", JSON.stringify(things));
+
+    // get all the things from local storage
     let localThings = JSON.parse(await this.storage.retrieve("allThings"));
+
+    // get one random thing from the things we have stored locally
     let thing = localThings[Math.floor(Math.random() * localThings.length)];
+
+    // initialize the thing for use in the app
     thing = this.initThing(thing);
+
+    // store todays thing in local storage
     await this.storage.store("todaysThing", JSON.stringify(thing));
+
+    // fire an update for the UI to reac
     this.update({todaysThing: thing});
+
+    // should return true if a thing was gotten, and false if it failed?
+
+    // return for testing?
     return thing;
   }
 

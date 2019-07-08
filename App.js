@@ -11,7 +11,8 @@ export default class App extends Component {
   componentWillMount() {
     notifications.configureNotifications();
     notifications.scheduleNotifications();
-    this.init();
+    // core.init();
+    this.init()
   }
 
   init() {
@@ -42,6 +43,7 @@ export default class App extends Component {
                   new Date().toDateString()
               ) {
                 // today’s thing hasn’t been set: set it.
+                // thingsGateway.checkForNew() if there are new things, then update the store, then... 
                 things.getNewThing();
               } else {
                 // today’s thing has been set: use it.
