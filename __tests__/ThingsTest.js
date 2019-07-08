@@ -4,7 +4,6 @@ import { MockThingGateway } from "../mocks/MockThingGateway.js";
 import { MockStorage } from "../mocks/MockStorage.js";
 import { MockTracker } from "../mocks/MockTracker.js";
 import { MockNotifications } from "../mocks/MockNotifications.js";
-import { isGenericTypeAnnotation } from "@babel/types";
 
 describe("Things", () => {
   let things;
@@ -33,6 +32,7 @@ describe("Things", () => {
       spyTracker = jest.spyOn(tracker, "trackEvent");
 
       things.skipThing();
+
       expect(spyTracker).toHaveBeenCalledWith("skipThing", { thing: things.state.todaysThing });
     })
 
