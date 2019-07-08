@@ -132,5 +132,18 @@
   { "title": "Give someone a compliment.", "id": 121 },
   { "title": "Tell someone why they’re important to you.", "id": 122 },
   { "title": "Do some pushups.", "id": 123 },
-  { "title": "Serve someone.", "id": 124 }
+  { "title": "Serve someone.", "id": 124 },
+  { "title": "Carry someone’s groceries.", "id": 125 },
+  { "title": "Smile and wave at someone in traffic.", "id": 126 },
+  { "title": "Tie a shoe for someone.", "id": 127 },
+  { "title": "Tell a joke.", "id": 128 },
+  { "title": "Send a thank you card.", "id": 129 },
+  { "title": "Save a life.", "id": 130 },
+  { "title": "Talk to someone who’s being left out.", "id": 131 },
+  { "title": "Share a vulnerability.", "id": 132 },
+  { "title": "Remove a bug instead of killing it.", "id": 133 },
+  { "title": "Park far away from your destination and walk.", "id": 134 },
+  { "title": "Pay it forward.", "id": 135 },
+  { "title": "Take care of someone’s dirty dish or glass.", "id": 136 },
+  { "title": "Give up your seat for someone else.", "id": 137 }
 ]
