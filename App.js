@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
 import Thing from "./components/thing/Thing";
-import { notifications, things, storage } from './core/factory.js';
+import { notifications, things, storage, tracker } from './core/factory.js';
 
 export default class App extends Component {
   constructor(props) {
@@ -56,12 +56,14 @@ export default class App extends Component {
               }
             })
             .catch(error => {
+              tracker.trackEvent("error", { source: "App.js:init()", description: "failed to get new thing during init." });
               things.getNewThing();
               console.error(error);
             });
         }
       })
       .catch(error => {
+        tracker.trackEvent("error", { source: "App.js:init()", description: "failed to access local storage in init." });
         console.error(error);
       });
   }

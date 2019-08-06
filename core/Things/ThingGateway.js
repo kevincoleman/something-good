@@ -1,4 +1,5 @@
 // import { Storage } from "../Storage";
+import { tracker } from '../../core/factory.js';
 
 // const storage = new Storage();
 
@@ -23,7 +24,8 @@ export class ThingGateway {
       .then(res => {
         return res.json();
       })
-      .catch(err => {
+      .catch(error => {
+        tracker.trackEvent("error", { source: "ThingGateway.js:all()", description: "Failed to get list of things from API." });
         return this.local();
       });
 
