@@ -1,4 +1,5 @@
 import { Platform } from "react-native";
+import { Core } from "./Core.js";
 import { ThingGateway } from "./Things/ThingGateway.js";
 import { Things } from "./Things/Things.js";
 import { Storage } from "./Storage.js";
@@ -9,8 +10,10 @@ import { Alerts } from "./Alerts.js";
 import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
 
 
+
 export const color = getRandomColor();
 export const encouragement = getRandomEncouragement();
+export const core = new Core();
 export const storage = new Storage();
 export const thingGateway = new ThingGateway(storage);
 export const tracker = new Tracker(new GoogleAnalyticsTracker("UA-127958837-1"));
