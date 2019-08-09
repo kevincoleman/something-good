@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
 import Thing from "./components/thing/Thing";
-import { core, notifications, things, storage, tracker } from './core/factory.js';
+import { core, notifications } from './core/factory.js';
 
 export default class App extends Component {
   constructor(props) {
