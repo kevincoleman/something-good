@@ -37,7 +37,7 @@
   { "title": "Ask someone to share a win.", "id": 32 },
   { "title": "Make some plans you’ll look forward to.", "id": 33 },
   {
-    "title": "Give away something you don’t need to someone who might.",
+    "title": "Give away something you don’t need.",
     "id": 34
   },
   { "title": "Write a list of things you’re thankful for.", "id": 35 },
@@ -145,5 +145,9 @@
   { "title": "Park far away from your destination and walk.", "id": 134 },
   { "title": "Pay it forward.", "id": 135 },
   { "title": "Take care of someone’s dirty dish or glass.", "id": 136 },
-  { "title": "Give up your seat for someone else.", "id": 137 }
+  { "title": "Give up your seat for someone else.", "id": 137 },
+  { "title": "Speak kindly of someone behind their back.", "id": 138},
+  { "title": "Tidy up a room.", "id": 139},
+  { "title": "Be grateful for something you take for granted.", "id": 140},
+  { "title": "Do something you’ve been putting off.", "id": 141}
 ]
