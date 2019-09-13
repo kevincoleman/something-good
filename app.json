@@ -1,24 +1,4 @@
 {
   "name": "SomethingGood",
-  "displayName": "Do Good",
-  "description": "An app to help people do more good things.",
-  "slug": "somethinggood",
-  "privacy": "public",
-  "version": "1.0",
-  "orientation": "portrait",
-  "primaryColor": "#a4036f",
-  "androidStatusBarColor": "#000000",
-  "androidStatusBar": {
-    "backgroundColor": "#000000",
-    "barStyle": "dark-content"
-  },
-  "icon": "./iconSet/icon.png",
-  "android": {
-    "package": "com.kevincolemandesign.somethinggood"
-  },
-  "ios": {
-    "supportsTablet": true,
-    "bundleIdentifier": "com.kevincolemandesign.somethinggood"
-  },
-  "assetBundlePatterns": ["ios/**", "node_modules/**"]
+  "displayName": "SomethingGood"
 }
