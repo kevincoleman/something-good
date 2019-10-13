@@ -1,0 +1,23 @@
+{
+  "name": "react-native-shake",
+  "version": "3.4.0",
+  "summary": "Detect shake event on Android and iOS",
+  "homepage": "https://github.com/Clip-sub/react-native-shake",
+  "license": "MIT",
+  "authors": {
+    "Clip-sub <support@clip-sub.com>": "Clip-sub <support@clip-sub.com>"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source": {
+    "git": "https://github.com/Clip-sub/react-native-shake.git",
+    "tag": "v3.4.0"
+  },
+  "source_files": "ios/**/*.{h,m}",
+  "dependencies": {
+    "React": [
+
+    ]
+  }
+}
