@@ -45,6 +45,10 @@ class Thing extends Component {
     });
   }
 
+  componentWillUnmount() {
+    RNShake.removeEventListener('ShakeEvent');
+  }
+
   handleSkipThing() {
     things.skipThing();
     // const skippedThing = this.state.todaysThing;
