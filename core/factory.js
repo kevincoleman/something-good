@@ -17,6 +17,6 @@ export const core = new Core();
 export const storage = new Storage();
 export const thingGateway = new ThingGateway(storage);
 // export const tracker = new Tracker(new GoogleAnalyticsTracker("UA-127958837-1"));
-export const notifications = new Notifications(storage, Platform.OS);
+export const notifications = new Notifications(Platform.OS);
 export const alerts = new Alerts();
 export const things = new Things(thingGateway, storage, notifications);
