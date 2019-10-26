@@ -1,7 +1,19 @@
 # Things to test on Android & iOS Before Deploy:
- - turn device sideways
- - shake device to get popup
- - shake device while popup is up to check for duplicates
- - QC icon display
- - check for notification badge
- - check for 9am notification
+ - [x] turn device sideways
+   - [x] ios
+   - [x] android
+ - [ ] shake device to get popup
+   - [x] ios
+   - [ ] android
+ - [ ] shake device while popup is up to check for duplicates
+   - [x] ios
+   - [ ] android
+ - [x] QC icon display
+   - [x] ios
+   - [x] android
+ - [ ] check for notification badge
+   - [x] ios
+   - [ ] android
+ - [ ] check for 9am notification
+   - [ ] ios
+   - [ ] android
