@@ -15,5 +15,5 @@
    - [x] ios
    - [ ] android
  - [ ] check for 9am notification
-   - [ ] ios
+   - [x] ios
    - [ ] android
