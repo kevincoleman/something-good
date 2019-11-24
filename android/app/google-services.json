@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "436599555797",
+    "firebase_url": "https://something-good-app.firebaseio.com",
+    "project_id": "something-good-app",
+    "storage_bucket": "something-good-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:436599555797:android:4594079a8d6fa213e6845c",
+        "android_client_info": {
+          "package_name": "com.somethinggood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "436599555797-dvi8imqrptga2bmgf86uuvfnvlvrjasp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1qE8Iw60ZL2q8tgB7ihVzZAb_YX4eYQg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "436599555797-dvi8imqrptga2bmgf86uuvfnvlvrjasp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "436599555797-lbeptkehreffvgke442dj0mnpbhh8hhe.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.SomethingGood",
+                "app_store_id": "1446080446"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
