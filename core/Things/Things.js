@@ -1,10 +1,10 @@
 import { getRandomColor } from "../Config.js";
 
 export class Things {
-  constructor(thingGateway, storage, notifications) {
+  constructor(thingGateway, storage, tracker, notifications) {
     this.thingGateway = thingGateway;
     this.storage = storage;
-    // this.tracker = tracker;
+    this.tracker = tracker;
     this.notifications = notifications;
     
     this.state = {
@@ -59,14 +59,20 @@ export class Things {
   }
 
   async skipThing() {
-    // this.tracker.trackEvent("skipThing", { thing: this.state.todaysThing });
+    this.tracker.trackEvent(
+      "skipThing",
+      { thing: JSON.stringify(this.state.todaysThing) }
+    );
     await this.getThing();
   }
  
 
   async getNewThing() {
     const thing = await this.getThing();
-    // this.tracker.trackEvent("loadNewThing", { thing: thing });
+    this.tracker.trackEvent(
+      "loadNewThing",
+      { thing: JSON.stringify(thing) }
+    );
     return thing;
   }
 
@@ -93,7 +99,10 @@ export class Things {
     this.notifications.scheduleNotifications();
 
     // analytics
-    // this.tracker.trackEvent("completeThing", { thing: this.state.todaysThing });
+    this.tracker.trackEvent(
+      "completeThing",
+      { thing: JSON.stringify(this.state.todaysThing) }
+    );
     
     this.update({todaysThing: this.state.todaysThing});
   }

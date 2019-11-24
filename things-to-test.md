@@ -10,10 +10,14 @@
    - [ ] android
  - [x] QC icon display
    - [x] ios
-   - [x] android
+   - [x] android (square)
+   - [ ] android (round)
  - [ ] check for notification badge
    - [x] ios
    - [ ] android
- - [ ] check for 9am notification
+ - [x] check for 9am notification
    - [x] ios
+   - [x] android
+ - [ ] analytics events
+   - [ ] ios
    - [ ] android

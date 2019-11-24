@@ -5,8 +5,9 @@ export class ThingGateway {
     // Get locally stored things (local)
     // Get hard-coded defaults (offline)
 
-  constructor(storage) {
+  constructor(storage, tracker) {
     this.storage = storage;
+    this.tracker = tracker;
   }
 
   async all() {
@@ -20,7 +21,10 @@ export class ThingGateway {
         return res.json();
       })
       .catch(error => {
-        // tracker.trackEvent("error", { source: "ThingGateway.js:all()", description: "Failed to get list of things from API." });
+        tracker.trackEvent(
+          "error",
+          { source: "ThingGateway.js:all()", description: "Failed to get list of things from API." }
+        );
         return this.local();
       });
 

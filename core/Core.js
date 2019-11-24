@@ -1,7 +1,7 @@
-import { storage, notifications, things } from "./factory.js";
+import { storage, notifications, things, tracker } from "./factory.js";
 
 export class Core {
-init() {
+  init() {
     let lastCompleted = {};
     storage
       .retrieve("lastCompletedThing")
@@ -37,19 +37,23 @@ init() {
                   todaysThing: JSON.parse(todaysThing),
                   thingCompletedToday: false,
                 })
-                // things.state.todaysThing = JSON.parse(todaysThing);
-                // this.setState({ todaysThing: JSON.parse(todaysThing) });
               }
             })
             .catch(error => {
-              // tracker.trackEvent("error", { source: "App.js:init()", description: "failed to get new thing during init." });
+              tracker.trackEvent(
+                "error",
+                { source: "App.js:init()", description: "failed to get new thing during init." }
+              );
               things.getNewThing();
               console.error(error);
             });
         }
       })
       .catch(error => {
-        // tracker.trackEvent("error", { source: "App.js:init()", description: "failed to access local storage in init." });
+        tracker.trackEvent(
+          "error",
+          { source: "App.js:init()", description: "failed to access local storage in init." }
+        );
         console.error(error);
       });
   }

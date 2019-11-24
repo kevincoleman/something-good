@@ -1,9 +1,9 @@
-export class Tracker {
-  constructor(tracker) {
-    this.tracker = tracker;
-  }
+import analytics from '@react-native-firebase/analytics';
 
-  trackEvent(name, data) {
-    this.tracker.trackEvent(`${name}`, JSON.stringify(data));
+export class Tracker {
+  // name: string
+  // data: object
+  async trackEvent(name, data) {
+    await analytics().logEvent(name, data);
   }
 }

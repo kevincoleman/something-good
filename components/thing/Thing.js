@@ -51,19 +51,10 @@ class Thing extends Component {
 
   handleSkipThing() {
     things.skipThing();
-    // const skippedThing = this.state.todaysThing;
-    // tracker.trackEvent("skipThing", { thing: skippedThing });
-    // things.getNewThing().then(thing => {
-    //   this.setState({
-    //     todaysThing: thing
-    //   });
-    // });
   }
 
   handleCompleteThing() {
     things.completeThing();
-    // const completedThing = things.completeThing(this.state.todaysThing);
-    // this.setState({ todaysThing: completedThing });
   }
 
   render() {
