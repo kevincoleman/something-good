@@ -669,13 +669,13 @@
 				DEVELOPMENT_TEAM = A33V646YC5;
 				INFOPLIST_FILE = SomethingGood/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kevincolemandesign.somethinggood;
 				PRODUCT_NAME = SomethingGood;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -690,14 +690,14 @@
 				DEVELOPMENT_TEAM = A33V646YC5;
 				INFOPLIST_FILE = SomethingGood/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.7;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kevincolemandesign.somethinggood;
 				PRODUCT_NAME = SomethingGood;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
