@@ -18,6 +18,18 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     color: "#333333"
   },
+  shareButton: {
+    alignItems: "center",
+    padding: 10,
+    borderColor: "#ffffff",
+    borderWidth: 2,
+    borderRadius: 3,
+    marginTop: 20,
+  },
+  shareButtonText: {
+    fontSize: 24,
+    color: "#ffffff"
+  },
   cantDo: {
     color: "#ffffff",
     textAlign: "center",
