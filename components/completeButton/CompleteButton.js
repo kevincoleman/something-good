@@ -1,39 +1,19 @@
 import React, { Component } from "react";
-import { View, Text, Share, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { getRandomEncouragement } from "../../core/Config";
 
 import { styles } from "./CompleteButton.styles";
 import { alerts } from "../../core/factory";
+import ShareButton from "../shareButton/ShareButton";
 
 class CompleteButton extends Component {
 
   constructor(props) {
     super(props);
-
   }
 
   cantDoThing() {
     alerts.cantDoThing();
-  }
-
-  onShare = async () => {
-    try {
-      const result = Share.share({
-        message: 'I just did a good thing!'
-      });
-
-      if (result.action === Share.sharedAction) {
-        if (result.activityType){
-          // shared with an activity type
-        } else {
-          // just shared
-        }
-      } else if (result.action === Share.dismissedAction) {
-        // dismissed
-      }
-    } catch (error) {
-      alert(error.message);
-    }
   }
 
   render() {
@@ -56,13 +36,7 @@ class CompleteButton extends Component {
           {getRandomEncouragement() + " "}
           Come back tomorrow for another good thing to do.
         </Text>
-        <TouchableOpacity
-          style={styles.shareButton}>
-          <Text style={styles.shareButtonText}
-            onPress={this.onShare}>
-            Share the goodness
-          </Text>
-        </TouchableOpacity>
+        <ShareButton />
       </View>
     );
 

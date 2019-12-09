@@ -1,9 +1,13 @@
-import { storage, notifications, things, tracker } from "./factory.js";
-
 export class Core {
+  constructor(storage, notifications, things, tracker) {
+    this.storage = storage;
+    this.notifications = notifications;
+    this.things = things;
+    this.tracker = tracker;
+  }
   init() {
     let lastCompleted = {};
-    storage
+    this.storage
       .retrieve("lastCompletedThing")
       .then(thing => {
         lastCompleted = JSON.parse(thing);
@@ -13,14 +17,14 @@ export class Core {
           lastCompleted.dateCompleted == new Date().toDateString()
         ) {
           // user did today’s thing: just use that thing
-          notifications.removeBadge();
-          things.update({
+          this.notifications.removeBadge();
+          this.things.update({
             todaysThing: lastCompleted
           });
         } else {
           // user didn’t do today’s thing: check if thing is already set
-          notifications.addBadge();
-          storage
+          this.notifications.addBadge();
+          this.storage
             .retrieve("todaysThing")
             .then(todaysThing => {
               if (
@@ -30,27 +34,27 @@ export class Core {
               ) {
                 // today’s thing hasn’t been set: set it.
                 // thingsGateway.checkForNew() if there are new things, then update the store, then... 
-                things.getNewThing();
+                this.things.getNewThing();
               } else {
                 // today’s thing has been set: use it.
-                things.update({
+                this.things.update({
                   todaysThing: JSON.parse(todaysThing),
                   thingCompletedToday: false,
                 })
               }
             })
             .catch(error => {
-              tracker.trackEvent(
+              this.tracker.trackEvent(
                 "error",
                 { source: "App.js:init()", description: "failed to get new thing during init." }
               );
-              things.getNewThing();
+              this.things.getNewThing();
               console.error(error);
             });
         }
       })
       .catch(error => {
-        tracker.trackEvent(
+        this.tracker.trackEvent(
           "error",
           { source: "App.js:init()", description: "failed to access local storage in init." }
         );

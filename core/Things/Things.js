@@ -60,8 +60,8 @@ export class Things {
 
   async skipThing() {
     this.tracker.trackEvent(
-      "skipThing",
-      { thing: JSON.stringify(this.state.todaysThing) }
+      "skip_thing",
+      this.state.todaysThing,
     );
     await this.getThing();
   }
@@ -70,8 +70,8 @@ export class Things {
   async getNewThing() {
     const thing = await this.getThing();
     this.tracker.trackEvent(
-      "loadNewThing",
-      { thing: JSON.stringify(thing) }
+      "load_new_thing",
+      thing
     );
     return thing;
   }
@@ -100,7 +100,7 @@ export class Things {
 
     // analytics
     this.tracker.trackEvent(
-      "completeThing",
+      "complete_thing",
       { thing: JSON.stringify(this.state.todaysThing) }
     );
     

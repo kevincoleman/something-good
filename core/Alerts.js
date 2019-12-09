@@ -1,8 +1,9 @@
 import { Alert } from "react-native";
-import { things } from './factory.js';
 
 export class Alerts {
-  constructor() {
+  constructor(things, tracker) {
+    this.things = things;
+    this.tracker = tracker;
     this.state = {
       alertPresent: false
     }
@@ -21,6 +22,7 @@ export class Alerts {
         }
       ]
     );
+    this.tracker.trackEvent("try_for_second_thing", {});
   }
 
   cantDoThing() {
@@ -33,6 +35,7 @@ export class Alerts {
           text: "Never mind",
           onPress: () => {
             this.state.alertPresent = false;
+            this.tracker.trackEvent("alert_cant_do_thing", {action: "keep current thing"});
             return false;
           },
           style: "cancel"
@@ -41,7 +44,8 @@ export class Alerts {
           text: "Get a new one",
           onPress: () => {
             this.state.alertPresent = false;
-            things.skipThing();
+            this.things.skipThing();
+            this.tracker.trackEvent("alert_cant_do_thing", {action: "get a new thing"});
           },
           style: "default"
         }

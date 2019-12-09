@@ -9,7 +9,7 @@ export class Storage {
     try {
       await AsyncStorage.setItem(`@${name}`, data);
     } catch (error) {
-      tracker.trackEvent(
+      this.tracker.trackEvent(
         "error",
         { source: "Storage.js:store()", description: "Failed to set item in local storage." }
       );
@@ -22,7 +22,7 @@ export class Storage {
       const value = await AsyncStorage.getItem(`@${name}`);
       return value;
     } catch (error) {
-      tracker.trackEvent(
+      this.tracker.trackEvent(
         "error",
         { source: "Storage.js:retrieve()", description: "Failed to get item from local storage." }
       );

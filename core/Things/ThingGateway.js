@@ -21,7 +21,7 @@ export class ThingGateway {
         return res.json();
       })
       .catch(error => {
-        tracker.trackEvent(
+        this.tracker.trackEvent(
           "error",
           { source: "ThingGateway.js:all()", description: "Failed to get list of things from API." }
         );

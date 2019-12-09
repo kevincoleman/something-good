@@ -2,17 +2,16 @@ import React, { Component } from "react";
 import { View, Text } from "react-native";
 import RNShake from "react-native-shake";
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
+import {things} from '../../core/factory'
 
 import CompleteButton from "../completeButton/CompleteButton";
 
 import { styles } from "./Thing.styles";
 
-import {things, storage, alerts} from '../../core/factory.js';
-
 class Thing extends Component {
-  constructor() {
-    super();
-
+  constructor(props) {
+    super(props);
+    
     this.state = things.state;
     this.handleCompleteThing = this.handleCompleteThing.bind(this);
     this.handleSkipThing = this.handleSkipThing.bind(this);
@@ -28,6 +27,7 @@ class Thing extends Component {
 
     // DEV USE ONLY:
     // reset item status for testing
+      // import { storage } from '../../core/factory.js';
       // things.getNewThing();
       // storage.store("lastCompletedThing", JSON.stringify(things));
 
