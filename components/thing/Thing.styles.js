@@ -1,12 +1,14 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+  backdrop: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     padding: 40,
     flexDirection: "column",
     justifyContent: "space-between",
-    backgroundColor: "purple"
   },
   todaysThing: {
     fontSize: 44,

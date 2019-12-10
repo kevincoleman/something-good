@@ -1,5 +1,3 @@
-import { things } from "./factory";
-
 let PushNotification = require("react-native-push-notification");
 
 function getMorning(modifier) {
@@ -31,13 +29,13 @@ export class Notifications {
     PushNotification.cancelAllLocalNotifications();
   }
 
-  scheduleNotifications() {
+  scheduleNotifications(completed) {
     
     let nextTime;
 
     PushNotification.cancelAllLocalNotifications();
 
-    if (things.state.todaysThing.completed) {
+    if (completed) {
       nextTime = getMorning(1);
     } else if (new Date().getHours() < 9) {
       nextTime = getMorning(0);

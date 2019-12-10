@@ -2,23 +2,54 @@ import React, { Component } from "react";
 import { View, Text } from "react-native";
 import RNShake from "react-native-shake";
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
-import {things} from '../../core/factory'
+import { things, alerts, storage } from '../../core/factory'
 
 import CompleteButton from "../completeButton/CompleteButton";
 
 import { styles } from "./Thing.styles";
+import { getRandomColor } from "../../core/Config";
 
 class Thing extends Component {
   constructor(props) {
     super(props);
     
-    this.state = things.state;
-    this.handleCompleteThing = this.handleCompleteThing.bind(this);
-    this.handleSkipThing = this.handleSkipThing.bind(this);
+    this.state = {
+      ...things.state,
+      backdropColor: getRandomColor(),
+    };
+    this.show = this.show.bind(this);
+    this.changeBackdropColor = this.changeBackdropColor.bind(this);
+    this.rando = this.rando.bind(this);
+    this.hide = this.hide.bind(this);
+  }
+
+  show() {
+    this.setState({ hidden: false });
+  }
+
+  hide() {
+    this.setState({ hidden: true });
+  }
+
+  changeBackdropColor(last) {
+    const color = getRandomColor();
+    if(last == color) {
+      this.changeBackdropColor()
+    } else {
+      this.setState({ backdropColor: color });
+    }
+  }
+
+  rando() {
+    setInterval(() => {
+      if (this.state.hidden) {
+        this.changeBackdropColor(this.state.backdropColor);
+      }
+    }, 100);
   }
 
   componentDidMount() {
-
+    this.rando();
     things.subscribe((thing) => {
       this.setState(thing);
     });
@@ -27,11 +58,10 @@ class Thing extends Component {
 
     // DEV USE ONLY:
     // reset item status for testing
-      // import { storage } from '../../core/factory.js';
-      // things.getNewThing();
-      // storage.store("lastCompletedThing", JSON.stringify(things));
+    // things.getNewThing();
+    // storage.store("lastCompletedThing", JSON.stringify(things));
 
-          // Handle shake events
+    // Handle shake events
     RNShake.addEventListener("ShakeEvent", () => {
       if (alerts.state.alertPresent) {
         return false;
@@ -49,19 +79,17 @@ class Thing extends Component {
     RNShake.removeEventListener('ShakeEvent');
   }
 
-  handleSkipThing() {
-    things.skipThing();
-  }
-
-  handleCompleteThing() {
-    things.completeThing();
-  }
-
   render() {
     return (
       <View
         style={[
+          styles.backdrop,
+          { backgroundColor: `#${this.state.backdropColor}` },
+        ]}>
+        <View
+        style={[
           styles.container,
+          { display: this.state.hidden ? "none" : "flex" },
           { backgroundColor: this.state.todaysThing.color }
         ]}
       >
@@ -77,8 +105,8 @@ class Thing extends Component {
         <CompleteButton
           completed={this.state.todaysThing.completed}
           handleCompleteThing={this.handleCompleteThing}
-          handleSkipThing={this.handleSkipThing}
         />
+      </View>
       </View>
     );
   }

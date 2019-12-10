@@ -10,7 +10,7 @@ export default class App extends Component {
 
   componentDidMount() {
     notifications.configureNotifications();
-    notifications.scheduleNotifications();
+    notifications.scheduleNotifications(false);
     core.init();
   }
 

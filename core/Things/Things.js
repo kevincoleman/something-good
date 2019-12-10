@@ -1,4 +1,4 @@
-import { getRandomColor } from "../Config.js";
+import { getRandomColor, getRandomEncouragement } from "../Config.js";
 
 export class Things {
   constructor(thingGateway, storage, tracker, notifications) {
@@ -13,8 +13,10 @@ export class Things {
         completed: false,
         dateRetrieved: "",
         dateCompleted: "",
-        color: ""
-      }
+        color: "",
+        encouragement: "",
+      },
+      hidden: false,
     };
 
     this.onThingChange = () => {};
@@ -29,33 +31,18 @@ export class Things {
     this.onThingChange(state);
   }
 
-  async getThing() {
+  getThing() {
+    this.update({ todaysThing: this.state.todaysThing, hidden: true });
+    setTimeout( async () => {
+      const things = await this.thingGateway.all();
+      await this.storage.store("allThings", JSON.stringify(things));
+      let localThings = JSON.parse(await this.storage.retrieve("allThings"));
+      let thing = localThings[Math.floor(Math.random() * localThings.length)];
+      thing = this.initThing(thing);
+      await this.storage.store("todaysThing", JSON.stringify(thing));
+      this.update({ todaysThing: thing, hidden: false });
+    }, 1000);
 
-    // get all the things
-    const things = await this.thingGateway.all();
-
-    // store all the things locally
-    await this.storage.store("allThings", JSON.stringify(things));
-
-    // get all the things from local storage
-    let localThings = JSON.parse(await this.storage.retrieve("allThings"));
-
-    // get one random thing from the things we have stored locally
-    let thing = localThings[Math.floor(Math.random() * localThings.length)];
-
-    // initialize the thing for use in the app
-    thing = this.initThing(thing);
-
-    // store todays thing in local storage
-    await this.storage.store("todaysThing", JSON.stringify(thing));
-
-    // fire an update for the UI to reac
-    this.update({todaysThing: thing});
-
-    // should return true if a thing was gotten, and false if it failed?
-
-    // return for testing?
-    return thing;
   }
 
   async skipThing() {
@@ -82,7 +69,8 @@ export class Things {
       completed: false,
       dateRetrieved: new Date().toDateString(),
       color: `#${getRandomColor()}`,
-      id: thing.id
+      encouragement: getRandomEncouragement(),
+      id: thing.id,
     };
   }
 
@@ -96,12 +84,12 @@ export class Things {
 
     // update & schedule notifications
     this.notifications.removeBadge();
-    this.notifications.scheduleNotifications();
+    this.notifications.scheduleNotifications(true);
 
     // analytics
     this.tracker.trackEvent(
       "complete_thing",
-      { thing: JSON.stringify(this.state.todaysThing) }
+      this.state.todaysThing
     );
     
     this.update({todaysThing: this.state.todaysThing});

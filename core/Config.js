@@ -1,14 +1,15 @@
+const colors = [
+  "442B48",
+  "6320EE",
+  "D81E5B",
+  "F15152",
+  "66635B",
+  "A4036F",
+  "16DB93",
+  "F29E4C"
+];
+
 export function getRandomColor() {
-  const colors = [
-    "442B48",
-    "6320EE",
-    "D81E5B",
-    "F15152",
-    "66635B",
-    "A4036F",
-    "16DB93",
-    "F29E4C"
-  ];
   return colors[Math.floor(Math.random() * colors.length)];
 }
 

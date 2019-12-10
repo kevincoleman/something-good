@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { getRandomEncouragement } from "../../core/Config";
 
 import { styles } from "./CompleteButton.styles";
-import { alerts } from "../../core/factory";
+import { alerts, things } from "../../core/factory";
 import ShareButton from "../shareButton/ShareButton";
 
 class CompleteButton extends Component {
@@ -16,12 +16,16 @@ class CompleteButton extends Component {
     alerts.cantDoThing();
   }
 
+  handleCompleteThing() {
+    things.completeThing();
+  }
+
   render() {
     let incompleted = (
       <View style={styles.actionArea}>
         <TouchableOpacity
           style={styles.button}
-          onPress={this.props.handleCompleteThing.bind(this)}
+          onPress={this.handleCompleteThing}
         >
           <Text style={styles.buttonText}>I did it!</Text>
         </TouchableOpacity>
@@ -33,7 +37,7 @@ class CompleteButton extends Component {
     let completed = (
       <View style={styles.actionArea}>
         <Text style={styles.basicText}>
-          {getRandomEncouragement() + " "}
+          {`${things.state.todaysThing.encouragement} `}
           Come back tomorrow for another good thing to do.
         </Text>
         <ShareButton />
