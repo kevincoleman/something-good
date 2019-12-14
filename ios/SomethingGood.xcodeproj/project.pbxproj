@@ -669,7 +669,7 @@
 				DEVELOPMENT_TEAM = A33V646YC5;
 				INFOPLIST_FILE = SomethingGood/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 1.7.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -690,7 +690,7 @@
 				DEVELOPMENT_TEAM = A33V646YC5;
 				INFOPLIST_FILE = SomethingGood/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 1.7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
