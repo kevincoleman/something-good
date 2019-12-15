@@ -1,7 +1,10 @@
-import { getRandomColor, getRandomEncouragement } from "../Config.js";
+import { Colors } from "../Colors.js";
+import { Encouragements } from "../Encouragements.js";
 
 export class Things {
   constructor(thingGateway, storage, tracker, notifications) {
+    this.colors = new Colors();
+    this.encouragements = new Encouragements();
     this.thingGateway = thingGateway;
     this.storage = storage;
     this.tracker = tracker;
@@ -19,6 +22,7 @@ export class Things {
       hidden: false,
     };
 
+    this.colors = new Colors();
     this.onThingChange = () => {};
   }
 
@@ -68,8 +72,8 @@ export class Things {
       title: thing.title,
       completed: false,
       dateRetrieved: new Date().toDateString(),
-      color: `#${getRandomColor()}`,
-      encouragement: getRandomEncouragement(),
+      color: `#${this.colors.getRandom()}`,
+      encouragement: this.encouragements.getRandom(),
       id: thing.id,
     };
   }

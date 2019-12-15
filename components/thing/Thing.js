@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import { View, Text } from "react-native";
 import RNShake from "react-native-shake";
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
-import { things, alerts, storage } from '../../core/factory'
+import { colors, things, alerts, storage } from '../../core/factory.js'
 
-import CompleteButton from "../completeButton/CompleteButton";
+import CompleteButton from "../completeButton/CompleteButton.js";
 
-import { styles } from "./Thing.styles";
-import { getRandomColor } from "../../core/Config";
+import { styles } from "./Thing.styles.js";
 
 class Thing extends Component {
   constructor(props) {
@@ -15,7 +14,7 @@ class Thing extends Component {
     
     this.state = {
       ...things.state,
-      backdropColor: getRandomColor(),
+      backdropColor: colors.getRandom(),
     };
     this.show = this.show.bind(this);
     this.changeBackdropColor = this.changeBackdropColor.bind(this);
@@ -32,7 +31,7 @@ class Thing extends Component {
   }
 
   changeBackdropColor(last) {
-    const color = getRandomColor();
+    const color = colors.getRandom();
     if(last == color) {
       this.changeBackdropColor()
     } else {
@@ -58,8 +57,8 @@ class Thing extends Component {
 
     // DEV USE ONLY:
     // reset item status for testing
-    // things.getNewThing();
-    // storage.store("lastCompletedThing", JSON.stringify(things));
+      // things.getNewThing();
+      // storage.store("lastCompletedThing", JSON.stringify(things));
 
     // Handle shake events
     RNShake.addEventListener("ShakeEvent", () => {

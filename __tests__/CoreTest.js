@@ -1,15 +1,9 @@
-import { Core } from "../core/Core.js";
-
-let core;
-
-beforeEach(() => {
-  core = new Core();
-});
+import { core } from "../core/factory.js";
 
 
 describe("Core", () => {
   describe("init()", () => {
-    it("inits a fresh app with a new thing and notification", () => {
+    fit("inits a fresh app with a new thing and notification", () => {
       let test = core.init();
       expect(test).toEqual(1);
     });

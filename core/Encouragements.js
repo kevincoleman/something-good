@@ -1,20 +1,7 @@
-const colors = [
-  "442B48",
-  "6320EE",
-  "D81E5B",
-  "F15152",
-  "66635B",
-  "A4036F",
-  "16DB93",
-  "F29E4C"
-];
 
-export function getRandomColor() {
-  return colors[Math.floor(Math.random() * colors.length)];
-}
+export class Encouragements {
 
-export function getRandomEncouragement() {
-  const encouragements = [
+  encouragements = [
     "Great job! The world is a better place because of you.",
     "Solid work. Sometimes it’s the little things that save lives.",
     "Well done. You did a good thing!",
@@ -24,5 +11,9 @@ export function getRandomEncouragement() {
     "One more good deed done!",
     "Lots of small things make one big thing."
   ];
-  return encouragements[Math.floor(Math.random() * encouragements.length)];
+
+  getRandom = () => {
+    return this.encouragements[Math.floor(Math.random() * this.encouragements.length)];
+  }
+
 }

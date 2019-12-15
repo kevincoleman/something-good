@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import { getRandomEncouragement } from "../../core/Config";
+import { Encouragements } from "../../core/Encouragements";
 
 import { styles } from "./CompleteButton.styles";
 import { alerts, things } from "../../core/factory";
@@ -10,6 +10,7 @@ class CompleteButton extends Component {
 
   constructor(props) {
     super(props);
+    this.encouragements = new Encouragements();
   }
 
   cantDoThing() {
