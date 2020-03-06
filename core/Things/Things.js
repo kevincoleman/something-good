@@ -73,7 +73,7 @@ export class Things {
       completed: false,
       dateRetrieved: new Date().toDateString(),
       color: `#${this.colors.getRandom()}`,
-      encouragement: this.encouragements.getRandom(),
+      encouragement: this.encouragements.getEncouragement(thing),
       id: thing.id,
     };
   }

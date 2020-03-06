@@ -12,8 +12,15 @@ export class Encouragements {
     "Lots of small things make one big thing."
   ];
 
+  getEncouragement = (thing) => {
+    if (!thing.encouragement || thing.encouragement == "") {
+      return this.getRandom();
+    } else {
+      return thing.encouragement;
+    }
+  }
+
   getRandom = () => {
     return this.encouragements[Math.floor(Math.random() * this.encouragements.length)];
   }
-
 }

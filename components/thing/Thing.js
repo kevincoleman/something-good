@@ -57,8 +57,8 @@ class Thing extends Component {
 
     // DEV USE ONLY:
     // reset item status for testing
-      // things.getNewThing();
-      // storage.store("lastCompletedThing", JSON.stringify(things));
+      things.getNewThing();
+      storage.store("lastCompletedThing", JSON.stringify(things));
 
     // Handle shake events
     RNShake.addEventListener("ShakeEvent", () => {
